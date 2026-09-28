@@ -52,7 +52,7 @@ function isUnwatchable(candidate) {
 
 export default defineConfig({
   site: 'https://cellove.my',
-  integrations: [icon({ include: { ph: ['*'] } })],
+  integrations: [icon({ include: { ph: ['*'], 'simple-icons': ['instagram', 'facebook', 'tiktok', 'linkedin'] } })],
   vite: {
     plugins: [tailwindcss()],
     server: {

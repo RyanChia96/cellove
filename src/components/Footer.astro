@@ -3,11 +3,15 @@
  * Global footer. Dark ground, the same logo as the header, social links and
  * the Malaysian medical advertising notice.
  */
+import { Icon } from 'astro-icon/components';
+
+// Inline SVG, not <img>. An <img> is a separate document, so currentColor
+// cannot inherit the footer's colour and the icons render black.
 const socials = [
-  { name: 'Instagram', file: 'soc-instagram', href: '#' },
-  { name: 'Facebook', file: 'soc-facebook', href: '#' },
-  { name: 'TikTok', file: 'soc-tiktok', href: '#' },
-  { name: 'LinkedIn', file: 'soc-linkedin', href: '#' },
+  { name: 'Instagram', icon: 'simple-icons:instagram', href: '#' },
+  { name: 'Facebook', icon: 'simple-icons:facebook', href: '#' },
+  { name: 'TikTok', icon: 'simple-icons:tiktok', href: '#' },
+  { name: 'LinkedIn', icon: 'simple-icons:linkedin', href: '#' },
 ];
 const cols = [
   { head: 'Explore', links: [['Why Cellove', '/#why-us'], ['Our Science', '/science'], ['Health & Wellness', '/health']] },
@@ -19,8 +23,7 @@ const cols = [
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-5">
         <a href="/" class="flex items-center gap-2.5" aria-label="Cellove Wellness, home">
-          <img src="/media/cellove-mark.svg" alt="" aria-hidden="true" width="35" height="40" class="h-10 w-auto" />
-          <img src="/media/cellove-wordmark-compact.svg" alt="Cellove Wellness" width="185" height="23" class="h-[22px] w-auto" />
+          <img src="/media/logo-white.svg" alt="Cellove Wellness" width="149" height="36" class="h-10 w-auto" />
         </a>
         <p class="mt-5 max-w-[34ch] text-[0.95rem] leading-relaxed" style="color: var(--on-dark-soft);">
           A doctor-led cellular wellness centre in Kuala Lumpur.
@@ -38,7 +41,7 @@ const cols = [
                 class="grid h-10 w-10 place-items-center rounded-full transition-colors duration-200"
                 style="border: 1px solid var(--on-dark-hairline); color: var(--on-dark);"
               >
-                <img src={`/media/icons/${s.file}.svg`} alt="" aria-hidden="true" width="18" height="18" class="h-[18px] w-[18px]" />
+                <Icon aria-hidden="true" name={s.icon} class="h-[18px] w-[18px]" />
               </a>
             </li>
           ))}
