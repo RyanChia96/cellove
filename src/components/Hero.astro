@@ -1,0 +1,155 @@
+---
+/**
+ * Editorial manifesto hero, left-weighted, with an optional motion layer.
+ *
+ * Architecture note: the still image is the base layer and is ALWAYS rendered.
+ * The video sits on top at opacity 0 and only fades in once it is genuinely
+ * playing. So reduced-motion visitors, no-JS visitors, phones, data-saver
+ * users and anyone whose video fails all see exactly the hero we shipped
+ * before video existed. Motion is additive, never load-bearing.
+ *
+ * The clip is abstract art direction. It is deliberately NOT presented as a
+ * micrograph, a specimen, or anything observed at Cellove, because implying
+ * clinical evidence the brand has not presented is a Medical Advertisements
+ * Board problem as well as a plain honesty one.
+ */
+import { Icon } from 'astro-icon/components';
+import { WHATSAPP_HREF } from '../lib/site';
+---
+<section
+  class="hero relative flex min-h-[calc(100dvh-72px)] items-center overflow-hidden"
+  style="background: var(--stone);"
+>
+  <img
+    src="/media/hero-field.jpg"
+    alt=""
+    aria-hidden="true"
+    fetchpriority="high"
+    decoding="async"
+    width="1400"
+    height="1750"
+    class="absolute inset-0 h-full w-full object-cover object-[62%_45%]"
+  />
+
+  <video
+    id="heroVideo"
+    class="hero-video absolute inset-0 h-full w-full object-cover object-[62%_45%]"
+    muted
+    loop
+    playsinline
+    preload="none"
+    aria-hidden="true"
+    tabindex="-1"
+    poster="/media/hero-field.jpg"
+    data-mp4="/media/hero-cells.mp4"
+  ></video>
+
+  <!-- Brand grade. Pulls the footage onto the Cellove palette regardless of
+       what the source clip actually looks like, so the hero cannot drift
+       off-system if the video is ever swapped. -->
+  <div class="hero-grade absolute inset-0" aria-hidden="true"></div>
+
+  <!-- Legibility scrim. Same discipline as the myth band: the value is
+       measured against the real frames, not eyeballed. -->
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(100deg, var(--paper) 4%, color-mix(in srgb, var(--paper) 78%, transparent) 38%, transparent 66%);"
+  ></div>
+
+  <div class="relative mx-auto w-full max-w-[1400px] px-5 pt-16 pb-20 sm:px-8 lg:pt-24 lg:pb-28">
+    <div class="max-w-[38rem] lg:max-w-[46rem]">
+      <h1
+        class="display text-[2.6rem] leading-[1.06] sm:text-[3.4rem] lg:text-[4.4rem]"
+        data-reveal
+      >
+        Self Love Begins<br />With <span style="color: var(--rose-deep);">Cell Love</span>
+      </h1>
+
+      <p
+        class="mt-7 max-w-[34rem] text-[1.02rem] leading-relaxed sm:text-[1.1rem]"
+        style="color: var(--ink-soft);"
+        data-reveal
+      >
+        Better health decisions begin with better understanding. Doctor-led care,
+        guided by evidence rather than trend.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" data-reveal>
+        <a
+          href="#start"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+          style="background: var(--ink); color: var(--paper);"
+        >
+          Start Your Cellove Journey
+          <Icon aria-hidden="true" name="ph:arrow-right" class="h-4 w-4" />
+        </a>
+        <a
+          href={WHATSAPP_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+          style="border: 1px solid var(--ink); color: var(--ink);"
+        >
+          <Icon aria-hidden="true" name="ph:whatsapp-logo" class="h-4 w-4" />
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const video = document.getElementById('heroVideo');
+    if (!(video instanceof HTMLVideoElement)) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const narrow = window.matchMedia('(max-width: 767px)').matches;
+    // @ts-ignore - saveData is not in the standard lib types
+    const saveData = Boolean(navigator.connection && navigator.connection.saveData);
+
+    // Phones keep the still: a 16:9 clip crops badly at portrait, and it is
+    // rude to spend someone's mobile data on decoration.
+    if (reduceMotion || narrow || saveData) return;
+
+    const mp4 = video.dataset.mp4;
+    if (!mp4) return;
+
+    const source = document.createElement('source');
+    source.src = mp4;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+
+    video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+
+    video.preload = 'auto';
+    video.load();
+
+    const tryPlay = () => {
+      const p = video.play();
+      // Autoplay can still be refused by policy. The still stays up, which is
+      // a perfectly good hero, so there is nothing to recover.
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    };
+    tryPlay();
+
+    // Stop decoding once it scrolls away.
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) tryPlay();
+            else video.pause();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      io.observe(video);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) video.pause();
+      else tryPlay();
+    });
+  })();
+</script>

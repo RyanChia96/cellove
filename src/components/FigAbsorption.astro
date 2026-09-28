@@ -1,0 +1,114 @@
+---
+/**
+ * FIG. 01 - Delivery pathway.
+ *
+ * Explanatory diagram, not data. It shows the ORDER of questions Cellove
+ * asks about delivery; it makes no claim about how much of anything is
+ * absorbed, and carries no numbers, because any absorption figure would be
+ * an efficacy claim requiring evidence and Medical Advertisements Board
+ * sign-off. The diagram is safe precisely because it quantifies nothing.
+ */
+const stages = [
+  { n: '01', k: 'Intervention', t: 'What is selected', c: 'var(--cat-1)' },
+  { n: '02', k: 'Route', t: 'How it is given', c: 'var(--cat-2)' },
+  { n: '03', k: 'Formulation', t: 'How it is prepared', c: 'var(--cat-3)' },
+  { n: '04', k: 'Availability', t: 'What the body can use', c: 'var(--cat-4)' },
+];
+const x0 = 92;
+const gap = 232;
+---
+<figure class="fig">
+  <svg
+    viewBox="0 0 1040 362"
+    role="img"
+    aria-labelledby="figAbsTitle figAbsDesc"
+    class="w-full"
+    style="max-width: 100%; height: auto;"
+  >
+    <title id="figAbsTitle">Figure 1. The delivery pathway Cellove considers</title>
+    <desc id="figAbsDesc">
+      Four stages in order: one, the intervention that is selected. Two, the route by
+      which it is given. Three, how it is formulated. Four, what the body is finally able
+      to use. The diagram shows the order of questions only and carries no measurements.
+    </desc>
+
+    <defs>
+      <marker id="absArrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0 0 L8 4 L0 8 z" fill="var(--pencil)" />
+      </marker>
+    </defs>
+
+    <!-- baseline with measurement ticks -->
+    <line x1="60" y1="296" x2="980" y2="296" stroke="var(--hairline)" stroke-width="1" />
+    {Array.from({ length: 39 }).map((_, i) => (
+      <line
+        x1={60 + i * 24}
+        y1="296"
+        x2={60 + i * 24}
+        y2={i % 5 === 0 ? 306 : 301}
+        stroke="var(--hairline)"
+        stroke-width="1"
+      />
+    ))}
+
+    {stages.map((s, i) => {
+      const x = x0 + i * gap;
+      return (
+        <g>
+          {i < stages.length - 1 && (
+            <line
+              x1={x + 58}
+              y1="150"
+              x2={x + gap - 60}
+              y2="150"
+              stroke="var(--pencil)"
+              stroke-width="1.5"
+              stroke-dasharray="5 5"
+              marker-end="url(#absArrow)"
+            />
+          )}
+
+          <circle cx={x} cy="150" r="30" fill="none" stroke={s.c} stroke-width="2" />
+          <circle cx={x} cy="150" r="9" fill={s.c} />
+
+          <text
+            x={x}
+            y="72"
+            text-anchor="middle"
+            class="fig-label"
+            font-size="11"
+            fill="var(--pencil)"
+          >{s.n}</text>
+          <line x1={x} y1="82" x2={x} y2="116" stroke="var(--hairline)" stroke-width="1" />
+
+          <text
+            x={x}
+            y="206"
+            text-anchor="middle"
+            font-size="17"
+            font-weight="500"
+            fill="var(--ink)"
+          >{s.k}</text>
+          <text
+            x={x}
+            y="268"
+            text-anchor="middle"
+            font-size="13.5"
+            fill="var(--graphite)"
+          >{s.t}</text>
+        </g>
+      );
+    })}
+
+    <text x="60" y="336" class="fig-label" font-size="10" fill="var(--pencil)">
+      ORDER OF ENQUIRY
+    </text>
+    <text x="980" y="336" text-anchor="end" class="fig-label" font-size="10" fill="var(--pencil)">
+      NO QUANTITIES IMPLIED
+    </text>
+  </svg>
+
+  <figcaption>
+    FIG. 01 &middot; The delivery pathway. Order of enquiry only.
+  </figcaption>
+</figure>

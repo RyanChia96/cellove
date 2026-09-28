@@ -1,0 +1,52 @@
+---
+import '@fontsource-variable/cormorant-garamond';
+import '@fontsource/geist-sans/300.css';
+import '@fontsource/geist-sans/400.css';
+import '@fontsource/geist-sans/500.css';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/caveat';
+import '../styles/global.css';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en-MY">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#FAF7F0" />
+
+    <!-- MEDICAL AND LEGAL REVIEW REQUIRED before publication.
+         Malaysian health advertising is governed by the Medicine (Advertisement
+         and Sale) Act 1956 and the Medical Advertisements Board. The title and
+         description below are drafted conservatively and make no treatment,
+         outcome or efficacy claim, but they still require sign-off. -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://cellove.my/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="en_MY" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script is:inline>
+      // Gate motion at the document level so no-JS and reduced-motion visitors
+      // never receive hidden content waiting on an animation that will not run.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-motion');
+      }
+    </script>
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:px-5 focus:py-3 focus:text-sm"
+      style="background: var(--ink); color: var(--paper);"
+    >Skip to content</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,61 @@
+---
+import { WHATSAPP_HREF } from '../lib/site';
+const cols = [
+  { head: 'Explore', links: [['Why Cellove', '#why'], ['Our Science', '#science'], ['Absorption Science', '#absorption']] },
+  { head: 'Health', links: [['Health & Wellness', '#health'], ['The Cellove Journey', '#journey'], ['Our Doctors', '#doctors']] },
+  { head: 'More', links: [['The Cellove Journal', '#journal'], ['Start Your Cellove Journey', '#start']] },
+];
+---
+<footer style="background: var(--stone); border-top: 1px solid var(--hairline);">
+  <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <img
+          src="/media/cellove-wordmark.svg"
+          alt="Cellove Wellness"
+          width="210"
+          height="45"
+          class="h-auto w-[190px] sm:w-[210px]"
+        />
+        <p class="mt-4 max-w-[34ch] text-[0.95rem] leading-relaxed">
+          A premium, doctor-led cellular wellness centre in Kuala Lumpur.
+        </p>
+        <a
+          href={WHATSAPP_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.87rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+          style="background: var(--ink); color: var(--paper);"
+        >WhatsApp Us</a>
+      </div>
+
+      {cols.map((c) => (
+        <nav class={c.head === 'More' ? 'lg:col-span-3' : 'lg:col-span-2'} aria-label={c.head}>
+          <h2 class="text-[0.72rem] uppercase tracking-[0.22em]" style="color: var(--ink-soft);">{c.head}</h2>
+          <ul class="mt-5 space-y-3">
+            {c.links.map(([label, href]) => (
+              <li>
+                <a href={href} class="text-[0.92rem] transition-colors duration-200 hover:text-[var(--rose-deep)]">{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ))}
+
+    </div>
+
+    <div class="mt-16 pt-8" style="border-top: 1px solid var(--hairline);">
+      <p class="max-w-[76ch] text-[0.78rem] leading-relaxed" style="color: var(--ink-soft);">
+        The information on this site is general in nature and is not a diagnosis, a
+        treatment recommendation, or a substitute for professional medical advice.
+        Whether any approach is appropriate is determined through individual
+        consultation and assessment. Health advertising in Malaysia is subject to
+        the Medicine (Advertisement and Sale) Act 1956 and the requirements of the
+        Medical Advertisements Board.
+      </p>
+      <p class="mt-6 text-[0.78rem]" style="color: var(--ink-soft);">
+        &copy; {new Date().getFullYear()} Cellove Wellness. Self Love Begins With Cell Love.
+      </p>
+    </div>
+  </div>
+</footer>

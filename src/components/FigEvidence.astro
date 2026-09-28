@@ -1,0 +1,97 @@
+---
+/**
+ * FIG. 02 - How a health claim is weighed.
+ *
+ * This is the one genuine CHART on the page: an ordered ranking, so the form
+ * is a horizontal bar, and because it encodes a single magnitude (strength)
+ * it uses ONE hue stepped light to dark, not a categorical set.
+ *
+ * It is the general evidence hierarchy used in appraisal. It is educational:
+ * it says nothing about Cellove's own results, and it carries no numbers,
+ * because putting a figure on any rung would turn a teaching aid into a claim.
+ *
+ * Direct-labelled on every bar, so identity is never colour-alone and the
+ * sequential ramp needs no legend. A single series names itself in the title.
+ */
+const rungs = [
+  { k: 'Anecdote', t: 'One person said it worked', w: 150, fill: '#CFE0EC' },
+  { k: 'Testimonial', t: 'Several people said so', w: 262, fill: '#A9C8DD' },
+  { k: 'Observational study', t: 'Patterns watched over time', w: 404, fill: '#6FA3C4' },
+  { k: 'Controlled trial', t: 'Compared against a control', w: 546, fill: '#3B82AC' },
+  { k: 'Systematic review', t: 'Every good trial weighed together', w: 672, fill: '#1A6E9E' },
+];
+const rowH = 62;
+const top = 78;
+const barH = 20;
+const x0 = 250;
+---
+<figure class="fig">
+  <svg
+    viewBox="0 0 1040 430"
+    role="img"
+    aria-labelledby="figEvTitle figEvDesc"
+    class="w-full"
+    style="max-width: 100%; height: auto;"
+  >
+    <title id="figEvTitle">Figure 2. How strongly different kinds of evidence support a health claim</title>
+    <desc id="figEvDesc">
+      Five kinds of evidence ordered from weakest to strongest: an anecdote from one
+      person, testimonials from several, an observational study watching patterns over
+      time, a controlled trial compared against a control group, and a systematic review
+      weighing every good trial together. The chart is a general teaching aid and shows
+      no measurements.
+    </desc>
+
+    <text x="60" y="40" class="fig-label" font-size="10.5" fill="var(--pencil)">
+      WEAKEST SUPPORT
+    </text>
+    <text x="980" y="40" text-anchor="end" class="fig-label" font-size="10.5" fill="var(--pencil)">
+      STRONGEST SUPPORT
+    </text>
+    <line x1="60" y1="52" x2="980" y2="52" stroke="var(--hairline)" stroke-width="1" />
+
+    {rungs.map((r, i) => {
+      const y = top + i * rowH;
+      return (
+        <g>
+          <text x="230" y={y + 15} text-anchor="end" font-size="15" font-weight="500" fill="var(--ink)">
+            {r.k}
+          </text>
+          <text x="230" y={y + 34} text-anchor="end" font-size="12.5" fill="var(--graphite)">
+            {r.t}
+          </text>
+          <rect
+            x={x0}
+            y={y}
+            width={r.w}
+            height={barH}
+            rx="4"
+            fill={r.fill}
+            stroke="var(--hairline)"
+            stroke-width="1"
+          />
+        </g>
+      );
+    })}
+
+    <line x1={x0} y1="66" x2={x0} y2="390" stroke="var(--hairline)" stroke-width="1" />
+    {Array.from({ length: 5 }).map((_, i) => (
+      <line
+        x1={x0 + 1}
+        y1={top + i * rowH + barH + 16}
+        x2={980}
+        y2={top + i * rowH + barH + 16}
+        stroke="var(--rule-minor)"
+        stroke-width="1"
+      />
+    ))}
+
+    <text x="60" y="412" class="fig-label" font-size="10" fill="var(--pencil)">
+      GENERAL APPRAISAL HIERARCHY &middot; NOT A CLAIM ABOUT ANY TREATMENT
+    </text>
+  </svg>
+
+  <figcaption>
+    FIG. 02 &middot; How a health claim is weighed. Teaching aid, no measurements.
+  </figcaption>
+</figure>

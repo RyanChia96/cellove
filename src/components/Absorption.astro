@@ -1,0 +1,49 @@
+---
+/**
+ * Absorption Science, as a notebook page. The photograph is replaced by the
+ * pathway figure: the differentiator is an argument, and a diagram can carry
+ * an argument where a mood shot cannot.
+ */
+import FigAbsorption from './FigAbsorption.astro';
+
+const points = [
+  { k: 'Route', t: 'Why the way something is given can change what reaches the body' },
+  { k: 'Formulation', t: 'Why preparation affects what the body can actually take up' },
+  { k: 'Appraisal', t: 'How delivery is weighed alongside the intervention itself' },
+];
+---
+<section id="absorption" style="background: var(--paper-2); border-block: 1px solid var(--hairline);">
+  <div class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
+    <div class="max-w-[52rem]">
+      <p class="label" data-reveal>Plate II &middot; Absorption science</p>
+      <h2 class="display mt-5 text-[2.1rem] sm:text-[2.6rem] lg:text-[3rem]" data-reveal>
+        Getting the Right Science Into the Right Place Matters.
+      </h2>
+      <p class="mt-7 max-w-[44ch] text-[1.02rem] leading-relaxed" data-reveal>
+        Choosing an intervention is only part of the equation. How the body receives
+        it matters just as much.
+      </p>
+    </div>
+
+    <div class="sheet mt-12 p-6 sm:p-10" data-reveal>
+      <FigAbsorption />
+    </div>
+
+    <div class="mt-14 grid gap-x-12 gap-y-8 sm:grid-cols-3">
+      {points.map((p, i) => (
+        <div data-reveal>
+          <div class="flex items-baseline gap-3">
+            <span class="measure">{String(i + 1).padStart(2, '0')}</span>
+            <span class="label label-ink">{p.k}</span>
+          </div>
+          <div class="ruler mt-3"></div>
+          <p class="mt-4 text-[0.95rem] leading-relaxed">{p.t}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="annot mt-12 max-w-[30ch]" data-reveal>
+      What we choose matters. How the body receives it matters too.
+    </p>
+  </div>
+</section>

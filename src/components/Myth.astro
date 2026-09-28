@@ -1,0 +1,40 @@
+---
+/**
+ * Notebook spread. The dark full-bleed band is gone: in the journal system
+ * this beat is a page of working, not a mood shot. It carries the one real
+ * chart on the site.
+ */
+import FigEvidence from './FigEvidence.astro';
+---
+<section id="myth" class="paper-grid" style="border-block: 1px solid var(--hairline);">
+  <div class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <p class="label" data-reveal>Plate I &middot; Working notes</p>
+        <h2 class="display mt-5 text-[2.1rem] sm:text-[2.7rem] lg:text-[3rem]" data-reveal>
+          Your Health Deserves Better Than Internet Myths.
+        </h2>
+        <div class="mt-7 max-w-[38rem] space-y-5 text-[1.02rem] leading-relaxed" data-reveal>
+          <p>
+            Eat this. Avoid that. Take this supplement. Every day brings another claim,
+            and much of it arrives without sufficient evidence behind it.
+          </p>
+          <p>
+            So the useful question is not <span class="underscored">is it true</span>,
+            but <span class="underscored">how would we know</span>. That is a question
+            with a real method behind it.
+          </p>
+        </div>
+        <p class="annot mt-8 max-w-[22ch]" data-reveal>
+          Ask what kind of evidence sits underneath the claim.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7" data-reveal>
+        <div class="sheet p-6 sm:p-8">
+          <FigEvidence />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

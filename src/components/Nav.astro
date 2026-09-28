@@ -1,0 +1,98 @@
+---
+import { Icon } from 'astro-icon/components';
+const links = [
+  { href: '#why', label: 'Why Cellove' },
+  { href: '#science', label: 'Our Science' },
+  { href: '#health', label: 'Health & Wellness' },
+  { href: '#doctors', label: 'Our Doctors' },
+  { href: '#journal', label: 'Journal' },
+];
+---
+<header
+  class="sticky top-0 z-50 backdrop-blur-md"
+  style="background: color-mix(in srgb, var(--paper) 86%, transparent); border-bottom: 1px solid var(--hairline);"
+>
+  <nav
+    class="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-8"
+    aria-label="Primary"
+  >
+    <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="Cellove Wellness, home">
+      <img src="/media/cellove-mark.svg" alt="" aria-hidden="true" width="35" height="40" class="h-9 w-auto" />
+      <img src="/media/cellove-wordmark-compact.svg" alt="Cellove Wellness" width="168" height="21" class="h-[19px] w-auto sm:h-[21px]" />
+    </a>
+
+    <ul class="hidden items-center gap-7 lg:flex">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-[0.82rem] transition-colors duration-200 hover:text-[var(--rose-deep)]"
+            style="color: var(--ink-soft);"
+          >{l.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex shrink-0 items-center gap-3">
+      <a
+        href="#start"
+        class="hidden whitespace-nowrap rounded-full px-5 py-2.5 text-[0.8rem] font-medium transition-transform duration-200 active:scale-[0.98] md:inline-block"
+        style="background: var(--ink); color: var(--paper);"
+      >Start Your Cellove Journey</a>
+      <button
+        type="button"
+        id="navToggle"
+        class="grid h-10 w-10 place-items-center rounded-full lg:hidden"
+        style="border: 1px solid var(--hairline); color: var(--ink);"
+        aria-expanded="false"
+        aria-controls="navPanel"
+        aria-label="Open menu"
+      >
+        <Icon aria-hidden="true" name="ph:list" class="h-5 w-5" />
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="navPanel"
+    hidden
+    class="lg:hidden"
+    style="border-top: 1px solid var(--hairline); background: var(--paper);"
+  >
+    <ul class="mx-auto flex max-w-[1400px] flex-col px-5 py-3 sm:px-8">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="block py-3 text-[0.95rem]"
+            style="color: var(--ink-soft); border-bottom: 1px solid var(--hairline);"
+          >{l.label}</a>
+        </li>
+      ))}
+      <li class="pt-4 pb-2">
+        <a
+          href="#start"
+          class="block rounded-full px-5 py-3 text-center text-[0.9rem] font-medium"
+          style="background: var(--ink); color: var(--paper);"
+        >Start Your Cellove Journey</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('navToggle');
+  const panel = document.getElementById('navPanel');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    if (panel) panel.hidden = open;
+  });
+  panel?.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => {
+      btn?.setAttribute('aria-expanded', 'false');
+      if (panel) panel.hidden = true;
+    })
+  );
+</script>

@@ -1,0 +1,38 @@
+---
+/** Centred close. The one place on the page where centring is the right move:
+ *  a single decision, nothing competing with it. */
+import { Icon } from 'astro-icon/components';
+import { WHATSAPP_HREF } from '../lib/site';
+---
+<section id="start" class="mx-auto max-w-[1400px] px-5 py-28 text-center sm:px-8 lg:py-40">
+  <h2 class="display mx-auto max-w-[18ch] text-[2.3rem] sm:text-[3rem] lg:text-[3.6rem]" data-reveal>
+    Begin with a conversation, not a price list.
+  </h2>
+  <p class="mx-auto mt-7 max-w-[44ch] text-[1.02rem] leading-relaxed" data-reveal>
+    Tell us what you are trying to achieve. We will tell you honestly whether we
+    can help, and what the evidence supports.
+  </p>
+
+  <div class="mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4" data-reveal>
+    <a
+      href={WHATSAPP_HREF}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full px-8 py-4 text-[0.92rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98] sm:w-auto"
+      style="background: var(--ink); color: var(--paper);"
+    >
+      Start Your Cellove Journey
+      <Icon aria-hidden="true" name="ph:arrow-right" class="h-4 w-4" />
+    </a>
+    <a
+      href={WHATSAPP_HREF}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full px-8 py-4 text-[0.92rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98] sm:w-auto"
+      style="border: 1px solid var(--ink); color: var(--ink);"
+    >
+      <Icon aria-hidden="true" name="ph:whatsapp-logo" class="h-4 w-4" />
+      WhatsApp Us
+    </a>
+  </div>
+</section>

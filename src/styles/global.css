@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Cellove Wellness - lab notebook / field journal system
+
+   Warm, human science: graph-paper ground, specimen-label typography,
+   measurement marks, sparing handwritten annotation. Rigorous without
+   being clinical.
+
+   Four type families is unusual and here it is deliberate: a real
+   notebook carries printed text, stamped labels and handwriting at once.
+   Each family is locked to ONE role and never borrowed for another.
+
+     Cormorant Garamond  display only, never UI
+     Geist Sans          body, UI, navigation
+     JetBrains Mono      specimen labels, figure numbers, measurements
+     Caveat              margin annotations only, sparingly
+
+   Light mode only, by client instruction.
+   Brand rose/gold is set aside for now at the client's direction; the
+   logo keeps its own colours and is not restyled.
+   --------------------------------------------------------------- */
+
+@theme {
+  --color-paper: #FAF7F0;
+  --color-paper-2: #F3EFE5;
+  --color-card: #FFFDF8;
+  --color-ink: #26313A;
+  --color-graphite: #55606A;
+  --color-pencil: #6A717A;
+  --color-annot: #C4452D;
+
+  --font-display: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Geist Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-hand: "Caveat Variable", "Caveat", cursive;
+}
+
+:root {
+  --paper: #FAF7F0;
+  --paper-2: #F3EFE5;
+  --card: #FFFDF8;
+  --ink: #26313A;
+  --graphite: #55606A;
+  --pencil: #6A717A;
+  --annot: #C4452D;
+
+  /* Graph paper. Minor 24px, major 120px, both derived from the ink hue so
+     the grid sits under the content instead of buzzing against it. */
+  --rule-minor: rgb(38 49 58 / 0.055);
+  --rule-major: rgb(38 49 58 / 0.10);
+  --hairline: rgb(38 49 58 / 0.14);
+
+  /* Diagram categorical, fixed order, never cycled.
+     Validated with the dataviz six-checks against the paper surface:
+     lightness band, chroma floor, CVD separation, normal-vision floor
+     and contrast all pass. Gold (series 3) warns below 3:1 contrast, so
+     it MUST always carry a visible label. In these diagrams it always does. */
+  --cat-1: #1A6E9E;
+  --cat-2: #C4452D;
+  --cat-3: #D9A227;
+  --cat-4: #3F8F63;
+
+  /* Compatibility aliases. Sections not yet rewritten in the notebook
+     language still reference the previous token names; these map them onto
+     the new system so nothing renders against a dangling variable. Remove
+     each alias as its section is converted. */
+  --stone: var(--paper-2);
+  --stone-deep: #E9E2D4;
+  --ink-soft: var(--graphite);
+  --rose: var(--annot);
+  --rose-deep: var(--annot);
+  --gold: var(--cat-3);
+  --invert-bg: var(--ink);
+  --invert-fg: var(--paper);
+  --invert-fg-soft: rgb(250 247 240 / 0.76);
+  --invert-accent: #E9A392;
+  --invert-hairline: rgb(250 247 240 / 0.2);
+
+  color-scheme: light;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--graphite);
+}
+
+::selection { background: color-mix(in srgb, var(--annot) 22%, transparent); color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--annot);
+  outline-offset: 3px;
+}
+
+/* --- Graph paper ground ------------------------------------------------ */
+
+.paper-grid {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--rule-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-major) 1px, transparent 1px),
+    linear-gradient(var(--rule-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-minor) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* A sheet laid on the grid: content that needs to stay readable. */
+.sheet {
+  background: var(--card);
+  border: 1px solid var(--hairline);
+}
+
+/* --- Typography roles -------------------------------------------------- */
+
+.display {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-weight: 300;
+  letter-spacing: -0.012em;
+  line-height: 1.1;
+  padding-bottom: 0.06em;
+  text-wrap: balance;
+}
+
+/* Specimen label. Stamped, not written. */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pencil);
+}
+
+.label-ink { color: var(--ink); }
+.label-annot { color: var(--annot); }
+
+/* Measurement / figure number. */
+.measure {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--pencil);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Margin annotation. Used sparingly: more than a few per page and the
+   whole thing tips into pastiche. */
+.annot {
+  font-family: var(--font-hand);
+  font-size: 1.28rem;
+  line-height: 1.3;
+  color: var(--annot);
+  transform: rotate(-1.2deg);
+}
+
+/* Hand-underline, as if drawn under a phrase. */
+.underscored {
+  background-image: linear-gradient(transparent 62%, color-mix(in srgb, var(--annot) 30%, transparent) 62%);
+  background-repeat: no-repeat;
+  background-size: 100% 88%;
+}
+
+/* --- Notebook devices -------------------------------------------------- */
+
+/* Ruler rule: a hairline with tick marks along it. */
+.ruler {
+  position: relative;
+  height: 1px;
+  background: var(--hairline);
+}
+.ruler::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 6px;
+  background-image: linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 24px 6px;
+}
+
+/* --- Motion ------------------------------------------------------------ */
+
+[data-reveal] { opacity: 1; }
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.js-motion [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Web Interface Guidelines conformance ------------------------------ */
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+section[id] { scroll-margin-top: 88px; }
+
+a, button, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgb(196 69 45 / 0.16);
+}
+
+.safe-bottom { bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
+.safe-right { right: calc(1rem + env(safe-area-inset-right, 0px)); }
+
+/* --- Hero motion layer (dormant until a clip exists) ------------------- */
+
+.hero-video {
+  opacity: 0;
+  transition: opacity 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+.hero-video.is-playing { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
+
+/* --- Figures ----------------------------------------------------------- */
+
+figure.fig { margin: 0; }
+
+figure.fig figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--pencil);
+  margin-top: 0.85rem;
+}
+
+/* Diagram text never wears the series colour: identity comes from the mark
+   beside it, so labels stay in ink. */
+.fig text { font-family: var(--font-sans); }
+.fig .fig-label { font-family: var(--font-mono); letter-spacing: 0.1em; }

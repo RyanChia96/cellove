@@ -1,0 +1,37 @@
+---
+/** Horizontal step rail. Scroll-snaps on narrow viewports, five columns at lg. */
+const steps = [
+  { n: '01', title: 'Understand', body: 'Your concerns, your goals, and the health background behind them.' },
+  { n: '02', title: 'Assess', body: 'Doctor-led assessment of your individual situation.' },
+  { n: '03', title: 'Map', body: 'Relevant science, cellular technology and delivery approaches considered together.' },
+  { n: '04', title: 'Personalise', body: 'An approach developed around your needs, not a standard package.' },
+  { n: '05', title: 'Support', body: 'Ongoing guidance and follow-up for as long as it is useful.' },
+];
+---
+<section id="journey" style="background: var(--invert-bg);">
+  <div class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
+    <h2 class="display max-w-[20ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" style="color: var(--invert-fg);" data-reveal>
+      The Cellove Journey
+    </h2>
+    <p class="mt-6 max-w-[48ch] text-[1.02rem] leading-relaxed" style="color: var(--invert-fg-soft);" data-reveal>
+      Five stages, each one informed by the last.
+    </p>
+
+    <ol
+      class="mt-14 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 lg:grid lg:grid-cols-5 lg:gap-6 lg:overflow-visible lg:pb-0"
+      style="scrollbar-width: thin;"
+    >
+      {steps.map((s) => (
+        <li
+          class="min-w-[15rem] shrink-0 snap-start pt-6 lg:min-w-0"
+          style="border-top: 1px solid var(--invert-hairline);"
+          data-reveal
+        >
+          <span class="display text-[1.3rem]" style="color: var(--invert-accent);">{s.n}</span>
+          <h3 class="display mt-3 text-[1.45rem]" style="color: var(--invert-fg);">{s.title}</h3>
+          <p class="mt-2.5 text-[0.92rem] leading-relaxed" style="color: var(--invert-fg-soft);">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

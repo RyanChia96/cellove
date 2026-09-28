@@ -1,0 +1,37 @@
+---
+/**
+ * Grouped health categories, deliberately not a disease catalogue.
+ * The brief (section 8) requires broad grouping and an explicit statement that
+ * suitability is decided in consultation. No condition is paired with an
+ * implied outcome anywhere in this section.
+ */
+const groups = [
+  { title: 'Preventive Health', areas: ['General health optimisation', 'Long-term wellbeing', 'Healthy ageing'] },
+  { title: 'Structural & Metabolic', areas: ['Joint and musculoskeletal', 'Cardiovascular', 'Metabolic', 'Kidney'] },
+  { title: 'Neurological & Immune', areas: ['Neurological', 'Immune-related'] },
+  { title: 'Skin & Hair', areas: ['Skin health and rejuvenation', 'Hair health'] },
+];
+---
+<section id="health" class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
+  <h2 class="display max-w-[22ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" data-reveal>
+    Areas of health we are asked about most.
+  </h2>
+  <p class="mt-6 max-w-[52ch] text-[1.02rem] leading-relaxed" data-reveal>
+    Whether any approach is appropriate for you is determined through doctor-led
+    consultation and individual assessment, never from a list.
+  </p>
+
+  <div class="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+    {groups.map((g) => (
+      <div data-reveal>
+        <h3 class="display text-[1.35rem]" style="color: var(--ink);">{g.title}</h3>
+        <hr class="rule mt-4" />
+        <ul class="mt-5 space-y-2.5">
+          {g.areas.map((a) => (
+            <li class="text-[0.93rem] leading-relaxed" style="color: var(--ink-soft);">{a}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

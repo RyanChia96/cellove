@@ -1,0 +1,66 @@
+---
+/**
+ * PLACEHOLDER CONTENT.
+ *
+ * Practitioner names, qualifications and registration numbers are deliberately
+ * NOT invented. Fabricating medical credentials for a real clinic is misleading
+ * and is a regulatory exposure under the Medical Advertisements Board. Fill in
+ * the fields below from the clinical team, and replace the portrait files in
+ * /public/media with real photography, before this page is published.
+ */
+const doctors = [
+  { img: '/media/portrait-placeholder-1.jpg', name: '', credentials: '', focus: '' },
+  { img: '/media/portrait-placeholder-2.jpg', name: '', credentials: '', focus: '' },
+  { img: '/media/portrait-placeholder-3.jpg', name: '', credentials: '', focus: '' },
+];
+const FIELD = {
+  name: 'Practitioner name',
+  credentials: 'Qualifications and registration',
+  focus: 'Areas of practice',
+};
+---
+<section id="doctors" class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
+  <p class="text-[0.72rem] uppercase tracking-[0.26em]" style="color: var(--rose-deep);" data-reveal>
+    Doctor-led care
+  </p>
+  <h2 class="display mt-5 max-w-[24ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" data-reveal>
+    The people behind the methodology.
+  </h2>
+  <p class="mt-6 max-w-[50ch] text-[1.02rem] leading-relaxed" data-reveal>
+    Our doctors are not names attached to a treatment. They are the reason the
+    approach holds together.
+  </p>
+
+  <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {doctors.map((d) => (
+      <article data-reveal>
+        <img
+          src={d.img}
+          alt={d.name ? `Portrait of ${d.name}` : ''}
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="1000"
+          class="w-full object-cover"
+          style="aspect-ratio: 4 / 5; background: var(--stone); max-width: 100%;"
+        />
+        <div class="mt-5">
+          <h3 class="display text-[1.3rem]" style={d.name ? '' : 'color: var(--ink-soft); font-style: italic;'}>
+            {d.name || FIELD.name}
+          </h3>
+          <p class="mt-1.5 text-[0.88rem]" style="color: var(--ink-soft);">
+            {d.credentials || FIELD.credentials}
+          </p>
+          <p class="mt-1 text-[0.88rem]" style="color: var(--ink-soft);">
+            {d.focus || FIELD.focus}
+          </p>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <p class="mt-12 max-w-[54ch] text-[0.85rem] leading-relaxed" style="color: var(--ink-soft);" data-reveal>
+    Practitioner profiles, qualifications and registrations are published here once
+    confirmed by the clinical team.
+  </p>
+</section>

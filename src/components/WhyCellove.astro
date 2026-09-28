@@ -1,0 +1,37 @@
+---
+/** Numbered vertical sequence. Four questions, in the order Cellove asks them.
+ *  Not a card grid, not a zigzag: the order is the point. */
+const steps = [
+  { q: 'What are you trying to achieve?', a: 'Your goals, your concerns, and the health background behind them.' },
+  { q: 'What does the evidence tell us?', a: 'What current scientific and clinical data actually supports, and where it stops.' },
+  { q: 'What approach may be appropriate?', a: 'Which cellular technology, if any, fits the objective and the clinical context.' },
+  { q: 'How should it be delivered?', a: 'How the body is likely to receive it, and what that means for the approach.' },
+];
+---
+<section id="why" class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-36">
+  <h2 class="display max-w-[26ch] text-[2.1rem] sm:text-[2.7rem] lg:text-[3.1rem]" data-reveal>
+    We Don&rsquo;t Start With a Product. We Start With You.
+  </h2>
+  <p class="mt-7 max-w-[34rem] text-[1.02rem] leading-relaxed" data-reveal>
+    Patients should not walk in and select a treatment from a menu. The starting
+    point is a question, and each answer narrows the next one.
+  </p>
+
+  <ol class="mt-16 max-w-[64rem]">
+    {steps.map((s, i) => (
+      <li
+        class="grid gap-3 py-8 sm:grid-cols-[5rem_1fr] sm:gap-8 lg:grid-cols-[7rem_1fr]"
+        style="border-top: 1px solid var(--hairline);"
+        data-reveal
+      >
+        <span class="display text-[1.7rem] leading-none" style="color: var(--rose-deep);">
+          0{i + 1}
+        </span>
+        <div>
+          <h3 class="display text-[1.4rem] sm:text-[1.75rem]">{s.q}</h3>
+          <p class="mt-2 max-w-[46ch] text-[0.97rem] leading-relaxed">{s.a}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
