@@ -1,0 +1,15 @@
+---
+/** Full-bleed image band. Opens a page in place of a text header. */
+const { src, alt, height = 'h-[220px] sm:h-[320px] lg:h-[420px]' } = Astro.props;
+---
+<section class={`relative w-full overflow-hidden ${height}`} style="background: var(--beige);">
+  <img
+    src={src}
+    alt={alt}
+    fetchpriority="high"
+    decoding="async"
+    width="1600"
+    height="480"
+    class="h-full w-full object-cover"
+  />
+</section>

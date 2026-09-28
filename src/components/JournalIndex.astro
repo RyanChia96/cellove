@@ -1,0 +1,72 @@
+---
+/**
+ * Journal index. Card grid with pagination on the same row as the count,
+ * matching Figma page 08.
+ *
+ * TODO: posts are placeholders. Read times are invented and must be replaced
+ * or dropped before launch. Pagination only renders pages that exist, so it
+ * cannot advertise routes that 404.
+ */
+const { current = 1, total = 1, count = 3 } = Astro.props;
+
+const posts = [
+  { k: 'How to weigh a health claim', d: 'The questions to ask before believing anything.', meta: '6 min read', img: 'post-claim', href: '/journal', alt: 'Layered curved forms in warm neutral tones.' },
+  { k: 'What absorption actually means', d: 'Why what you take and what your body uses differ.', meta: '5 min read', img: 'post-absorption', href: '/journal', alt: 'A soft beige curve beneath a leaf shadow.' },
+  { k: 'Science and trends', d: 'How to tell an evidence base from a marketing cycle.', meta: '7 min read', img: 'post-trends', href: '/journal', alt: 'Daylight falling across a warm textured wall.' },
+];
+const pages = Array.from({ length: total }, (_, i) => i + 1);
+---
+<section id="journal" class="ground-white">
+  <div class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:py-24">
+    <h1 class="display max-w-[16ch] text-[2.4rem] sm:text-[2.9rem]" data-reveal>The Cellove Journal.</h1>
+    <p class="mt-6 max-w-[48ch] text-[1.02rem] leading-relaxed" data-reveal>
+      Plain explanations of how cellular health works, written to be understood
+      rather than to impress.
+    </p>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-3">
+      {posts.map((p) => (
+        <a href={p.href} class="group block" data-reveal>
+          <img
+            src={`/media/${p.img}.jpg`}
+            alt={p.alt}
+            loading="lazy" decoding="async" width="816" height="448"
+            class="w-full object-cover"
+            style="aspect-ratio: 16 / 9; background: var(--beige);"
+          />
+          <p class="label mt-5">{p.meta}</p>
+          <h2 class="display mt-2 text-[1.35rem] transition-colors duration-200 group-hover:text-[var(--annot)]">{p.k}</h2>
+          <p class="mt-2 text-[0.93rem] leading-relaxed">{p.d}</p>
+        </a>
+      ))}
+    </div>
+
+    <div class="ruler mt-14"></div>
+    <nav class="mt-6 flex flex-wrap items-center justify-between gap-5" aria-label="Journal pages">
+      {total > 1 ? (
+        <ul class="flex items-center gap-2">
+          {pages.map((p) => (
+            <li>
+              <a
+                href={p === 1 ? '/journal' : `/journal/${p}`}
+                aria-current={p === current ? 'page' : undefined}
+                class="grid h-10 w-10 place-items-center rounded-full text-[0.9rem] font-medium"
+                style={p === current
+                  ? 'background: var(--ink); color: var(--white);'
+                  : 'border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); color: var(--ink);'}
+              >{p}</a>
+            </li>
+          ))}
+          {current < total && (
+            <li class="ml-2">
+              <a href={`/journal/${current + 1}`} class="text-[0.9rem] font-medium" style="color: var(--ink);">Next</a>
+            </li>
+          )}
+        </ul>
+      ) : (
+        <p class="measure">More writing is in preparation.</p>
+      )}
+      <p class="measure">{count} {count === 1 ? 'article' : 'articles'}</p>
+    </nav>
+  </div>
+</section>
