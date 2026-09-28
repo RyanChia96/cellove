@@ -10,7 +10,7 @@ const links = [
 ---
 <header
   class="sticky top-0 z-50 backdrop-blur-md"
-  style="background: color-mix(in srgb, var(--paper) 86%, transparent); border-bottom: 1px solid var(--hairline);"
+  style="background: color-mix(in srgb, var(--white) 86%, transparent); border-bottom: 1px solid var(--hairline);"
 >
   <nav
     class="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-8"
@@ -26,8 +26,8 @@ const links = [
         <li>
           <a
             href={l.href}
-            class="text-[0.82rem] transition-colors duration-200 hover:text-[var(--rose-deep)]"
-            style="color: var(--ink-soft);"
+            class="text-[0.82rem] transition-colors duration-200 hover:text-[var(--annot)]"
+            style="color: var(--graphite);"
           >{l.label}</a>
         </li>
       ))}
@@ -37,7 +37,7 @@ const links = [
       <a
         href="#start"
         class="hidden whitespace-nowrap rounded-full px-5 py-2.5 text-[0.8rem] font-medium transition-transform duration-200 active:scale-[0.98] md:inline-block"
-        style="background: var(--ink); color: var(--paper);"
+        style="background: var(--ink); color: var(--white);"
       >Start Your Cellove Journey</a>
       <button
         type="button"
@@ -57,7 +57,7 @@ const links = [
     id="navPanel"
     hidden
     class="lg:hidden"
-    style="border-top: 1px solid var(--hairline); background: var(--paper);"
+    style="border-top: 1px solid var(--hairline); background: var(--white);"
   >
     <ul class="mx-auto flex max-w-[1400px] flex-col px-5 py-3 sm:px-8">
       {links.map((l) => (
@@ -65,7 +65,7 @@ const links = [
           <a
             href={l.href}
             class="block py-3 text-[0.95rem]"
-            style="color: var(--ink-soft); border-bottom: 1px solid var(--hairline);"
+            style="color: var(--graphite); border-bottom: 1px solid var(--hairline);"
           >{l.label}</a>
         </li>
       ))}
@@ -73,7 +73,7 @@ const links = [
         <a
           href="#start"
           class="block rounded-full px-5 py-3 text-center text-[0.9rem] font-medium"
-          style="background: var(--ink); color: var(--paper);"
+          style="background: var(--ink); color: var(--white);"
         >Start Your Cellove Journey</a>
       </li>
     </ul>

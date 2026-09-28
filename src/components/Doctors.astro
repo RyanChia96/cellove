@@ -20,7 +20,7 @@ const FIELD = {
 };
 ---
 <section id="doctors" class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
-  <p class="text-[0.72rem] uppercase tracking-[0.26em]" style="color: var(--rose-deep);" data-reveal>
+  <p class="text-[0.72rem] uppercase tracking-[0.26em]" style="color: var(--annot);" data-reveal>
     Doctor-led care
   </p>
   <h2 class="display mt-5 max-w-[24ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" data-reveal>
@@ -42,16 +42,16 @@ const FIELD = {
           width="800"
           height="1000"
           class="w-full object-cover"
-          style="aspect-ratio: 4 / 5; background: var(--stone); max-width: 100%;"
+          style="aspect-ratio: 4 / 5; background: var(--beige); max-width: 100%;"
         />
         <div class="mt-5">
-          <h3 class="display text-[1.3rem]" style={d.name ? '' : 'color: var(--ink-soft); font-style: italic;'}>
+          <h3 class="display text-[1.3rem]" style={d.name ? '' : 'color: var(--graphite); font-style: italic;'}>
             {d.name || FIELD.name}
           </h3>
-          <p class="mt-1.5 text-[0.88rem]" style="color: var(--ink-soft);">
+          <p class="mt-1.5 text-[0.88rem]" style="color: var(--graphite);">
             {d.credentials || FIELD.credentials}
           </p>
-          <p class="mt-1 text-[0.88rem]" style="color: var(--ink-soft);">
+          <p class="mt-1 text-[0.88rem]" style="color: var(--graphite);">
             {d.focus || FIELD.focus}
           </p>
         </div>
@@ -59,7 +59,7 @@ const FIELD = {
     ))}
   </div>
 
-  <p class="mt-12 max-w-[54ch] text-[0.85rem] leading-relaxed" style="color: var(--ink-soft);" data-reveal>
+  <p class="mt-12 max-w-[54ch] text-[0.85rem] leading-relaxed" style="color: var(--graphite);" data-reveal>
     Practitioner profiles, qualifications and registrations are published here once
     confirmed by the clinical team.
   </p>

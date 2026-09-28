@@ -6,7 +6,7 @@ const cols = [
   { head: 'More', links: [['The Cellove Journal', '#journal'], ['Start Your Cellove Journey', '#start']] },
 ];
 ---
-<footer style="background: var(--stone); border-top: 1px solid var(--hairline);">
+<footer style="background: var(--beige); border-top: 1px solid var(--hairline);">
   <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-5">
@@ -25,17 +25,17 @@ const cols = [
           target="_blank"
           rel="noopener noreferrer"
           class="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.87rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
-          style="background: var(--ink); color: var(--paper);"
+          style="background: var(--ink); color: var(--white);"
         >WhatsApp Us</a>
       </div>
 
       {cols.map((c) => (
         <nav class={c.head === 'More' ? 'lg:col-span-3' : 'lg:col-span-2'} aria-label={c.head}>
-          <h2 class="text-[0.72rem] uppercase tracking-[0.22em]" style="color: var(--ink-soft);">{c.head}</h2>
+          <h2 class="text-[0.72rem] uppercase tracking-[0.22em]" style="color: var(--graphite);">{c.head}</h2>
           <ul class="mt-5 space-y-3">
             {c.links.map(([label, href]) => (
               <li>
-                <a href={href} class="text-[0.92rem] transition-colors duration-200 hover:text-[var(--rose-deep)]">{label}</a>
+                <a href={href} class="text-[0.92rem] transition-colors duration-200 hover:text-[var(--annot)]">{label}</a>
               </li>
             ))}
           </ul>
@@ -45,7 +45,7 @@ const cols = [
     </div>
 
     <div class="mt-16 pt-8" style="border-top: 1px solid var(--hairline);">
-      <p class="max-w-[76ch] text-[0.78rem] leading-relaxed" style="color: var(--ink-soft);">
+      <p class="max-w-[76ch] text-[0.78rem] leading-relaxed" style="color: var(--graphite);">
         The information on this site is general in nature and is not a diagnosis, a
         treatment recommendation, or a substitute for professional medical advice.
         Whether any approach is appropriate is determined through individual
@@ -53,7 +53,7 @@ const cols = [
         the Medicine (Advertisement and Sale) Act 1956 and the requirements of the
         Medical Advertisements Board.
       </p>
-      <p class="mt-6 text-[0.78rem]" style="color: var(--ink-soft);">
+      <p class="mt-6 text-[0.78rem]" style="color: var(--graphite);">
         &copy; {new Date().getFullYear()} Cellove Wellness. Self Love Begins With Cell Love.
       </p>
     </div>

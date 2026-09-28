@@ -8,12 +8,12 @@ const steps = [
   { n: '05', title: 'Support', body: 'Ongoing guidance and follow-up for as long as it is useful.' },
 ];
 ---
-<section id="journey" style="background: var(--invert-bg);">
+<section id="journey" style="background: var(--dark);">
   <div class="mx-auto max-w-[1400px] px-5 py-24 sm:px-8 lg:py-32">
-    <h2 class="display max-w-[20ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" style="color: var(--invert-fg);" data-reveal>
+    <h2 class="display max-w-[20ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" style="color: var(--on-dark);" data-reveal>
       The Cellove Journey
     </h2>
-    <p class="mt-6 max-w-[48ch] text-[1.02rem] leading-relaxed" style="color: var(--invert-fg-soft);" data-reveal>
+    <p class="mt-6 max-w-[48ch] text-[1.02rem] leading-relaxed" style="color: var(--on-dark-soft);" data-reveal>
       Five stages, each one informed by the last.
     </p>
 
@@ -24,12 +24,12 @@ const steps = [
       {steps.map((s) => (
         <li
           class="min-w-[15rem] shrink-0 snap-start pt-6 lg:min-w-0"
-          style="border-top: 1px solid var(--invert-hairline);"
+          style="border-top: 1px solid var(--on-dark-hairline);"
           data-reveal
         >
-          <span class="display text-[1.3rem]" style="color: var(--invert-accent);">{s.n}</span>
-          <h3 class="display mt-3 text-[1.45rem]" style="color: var(--invert-fg);">{s.title}</h3>
-          <p class="mt-2.5 text-[0.92rem] leading-relaxed" style="color: var(--invert-fg-soft);">{s.body}</p>
+          <span class="display text-[1.3rem]" style="color: var(--annot-on-dark);">{s.n}</span>
+          <h3 class="display mt-3 text-[1.45rem]" style="color: var(--on-dark);">{s.title}</h3>
+          <p class="mt-2.5 text-[0.92rem] leading-relaxed" style="color: var(--on-dark-soft);">{s.body}</p>
         </li>
       ))}
     </ol>
