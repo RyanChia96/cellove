@@ -1,0 +1,23 @@
+---
+/**
+ * Page shell. Every route gets the same chrome: nav at the top, contact form
+ * and footer at the bottom, and the WhatsApp float above everything.
+ */
+import Base from './Base.astro';
+import Nav from '../components/Nav.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+
+interface Props { title: string; description: string; formGround?: string; }
+const { title, description, formGround = 'white' } = Astro.props;
+---
+<Base title={title} description={description}>
+  <Nav />
+  <main id="main">
+    <slot />
+    <ContactForm ground={formGround} />
+  </main>
+  <Footer />
+  <WhatsAppFab />
+</Base>

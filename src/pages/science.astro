@@ -1,0 +1,28 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+import Absorption from '../components/Absorption.astro';
+import Pillars from '../components/Pillars.astro';
+import WhyCellove from '../components/WhyCellove.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const title = 'Our Science | Cellove Wellness';
+const description =
+  'How Cellove decides what to recommend: cell technology, absorption science, and the order of enquiry behind every approach.';
+---
+<Page title={title} description={description}>
+  <PageHead
+    eyebrow="Our Science"
+    heading="How we decide what to recommend."
+    body="Four things are weighed before anything is suggested, in a fixed order. This page walks through each of them."
+  />
+  <Pillars />
+  <Absorption />
+  <WhyCellove />
+  <CtaBand
+    heading="Which of these applies to you?"
+    body="Bring the question. We will tell you whether it is one for us."
+    label="Contact Us"
+    href="/contact"
+  />
+</Page>

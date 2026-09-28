@@ -1,0 +1,47 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+
+const title = 'Contact Us | Cellove Wellness';
+const description =
+  'Start your Cellove journey. Message us on WhatsApp or send an enquiry and we will tell you whether we are the right people for it.';
+
+// PLACEHOLDER. Real details required before launch.
+const details = [
+  ['WhatsApp', 'Number to be confirmed'],
+  ['Email', 'Address to be confirmed'],
+  ['Clinic', 'Address to be confirmed, Kuala Lumpur'],
+  ['Hours', 'Opening hours to be confirmed'],
+];
+---
+<Page title={title} description={description} formGround="beige">
+  <PageHead
+    eyebrow="Contact"
+    heading="Start your Cellove journey."
+    body="Message us, or use the form below. We will ask what you want to change, then tell you whether we are the right people for it."
+  />
+
+  <section class="ground-white">
+    <div class="mx-auto grid max-w-[1440px] gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-12 lg:gap-16 lg:pb-24">
+      <div class="lg:col-span-6">
+        <dl class="grid gap-0" data-reveal>
+          {details.map(([k, v], i) => (
+            <div class="py-6" style={i === 0 ? '' : 'border-top: 1px solid var(--hairline);'}>
+              <dt class="label">{k}</dt>
+              <dd class="mt-2 text-[1rem]" style="color: var(--ink);">{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="lg:col-span-6" data-reveal>
+        <img
+          src="/media/contact-clinic.jpg"
+          alt="The arrival space at the clinic."
+          loading="lazy" decoding="async" width="1200" height="800"
+          class="w-full object-cover"
+          style="aspect-ratio: 3 / 2; background: var(--beige);"
+        />
+      </div>
+    </div>
+  </section>
+</Page>

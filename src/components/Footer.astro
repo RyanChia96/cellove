@@ -1,59 +1,75 @@
 ---
-import { WHATSAPP_HREF } from '../lib/site';
+/**
+ * Global footer. Dark ground, the same logo as the header, social links and
+ * the Malaysian medical advertising notice.
+ */
+const socials = [
+  { name: 'Instagram', file: 'soc-instagram', href: '#' },
+  { name: 'Facebook', file: 'soc-facebook', href: '#' },
+  { name: 'TikTok', file: 'soc-tiktok', href: '#' },
+  { name: 'LinkedIn', file: 'soc-linkedin', href: '#' },
+];
 const cols = [
-  { head: 'Explore', links: [['Why Cellove', '#why'], ['Our Science', '#science'], ['Absorption Science', '#absorption']] },
-  { head: 'Health', links: [['Health & Wellness', '#health'], ['The Cellove Journey', '#journey'], ['Our Doctors', '#doctors']] },
-  { head: 'More', links: [['The Cellove Journal', '#journal'], ['Start Your Cellove Journey', '#start']] },
+  { head: 'Explore', links: [['Why Cellove', '/#why-us'], ['Our Science', '/science'], ['Health & Wellness', '/health']] },
+  { head: 'About', links: [['About Us', '/about'], ['The Cellove Journal', '/journal'], ['Contact Us', '/contact']] },
 ];
 ---
-<footer style="background: var(--beige); border-top: 1px solid var(--hairline);">
-  <div class="mx-auto max-w-[1400px] px-5 py-16 sm:px-8 lg:py-20">
+<footer class="ground-dark">
+  <div class="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:py-20">
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-5">
-        <img
-          src="/media/cellove-wordmark.svg"
-          alt="Cellove Wellness"
-          width="210"
-          height="45"
-          class="h-auto w-[190px] sm:w-[210px]"
-        />
-        <p class="mt-4 max-w-[34ch] text-[0.95rem] leading-relaxed">
-          A premium, doctor-led cellular wellness centre in Kuala Lumpur.
+        <a href="/" class="flex items-center gap-2.5" aria-label="Cellove Wellness, home">
+          <img src="/media/cellove-mark.svg" alt="" aria-hidden="true" width="35" height="40" class="h-10 w-auto" />
+          <img src="/media/cellove-wordmark-compact.svg" alt="Cellove Wellness" width="185" height="23" class="h-[22px] w-auto" />
+        </a>
+        <p class="mt-5 max-w-[34ch] text-[0.95rem] leading-relaxed" style="color: var(--on-dark-soft);">
+          A doctor-led cellular wellness centre in Kuala Lumpur.
         </p>
-        <a
-          href={WHATSAPP_HREF}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.87rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
-          style="background: var(--ink); color: var(--white);"
-        >WhatsApp Us</a>
+
+        <p class="label mt-9">Follow</p>
+        <ul class="mt-4 flex items-center gap-3">
+          {socials.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.name}
+                class="grid h-10 w-10 place-items-center rounded-full transition-colors duration-200"
+                style="border: 1px solid var(--on-dark-hairline); color: var(--on-dark);"
+              >
+                <img src={`/media/icons/${s.file}.svg`} alt="" aria-hidden="true" width="18" height="18" class="h-[18px] w-[18px]" />
+              </a>
+            </li>
+          ))}
+        </ul>
+        {/* TODO: social URLs are placeholders until the accounts are confirmed. */}
       </div>
 
       {cols.map((c) => (
-        <nav class={c.head === 'More' ? 'lg:col-span-3' : 'lg:col-span-2'} aria-label={c.head}>
-          <h2 class="text-[0.72rem] uppercase tracking-[0.22em]" style="color: var(--graphite);">{c.head}</h2>
+        <nav class="lg:col-span-3" aria-label={c.head}>
+          <h2 class="label">{c.head}</h2>
           <ul class="mt-5 space-y-3">
             {c.links.map(([label, href]) => (
               <li>
-                <a href={href} class="text-[0.92rem] transition-colors duration-200 hover:text-[var(--annot)]">{label}</a>
+                <a href={href} class="text-[0.92rem] transition-colors duration-200 hover:opacity-70" style="color: var(--on-dark);">{label}</a>
               </li>
             ))}
           </ul>
         </nav>
       ))}
-
+      <div class="lg:col-span-1"></div>
     </div>
 
-    <div class="mt-16 pt-8" style="border-top: 1px solid var(--hairline);">
-      <p class="max-w-[76ch] text-[0.78rem] leading-relaxed" style="color: var(--graphite);">
-        The information on this site is general in nature and is not a diagnosis, a
-        treatment recommendation, or a substitute for professional medical advice.
-        Whether any approach is appropriate is determined through individual
-        consultation and assessment. Health advertising in Malaysia is subject to
-        the Medicine (Advertisement and Sale) Act 1956 and the requirements of the
-        Medical Advertisements Board.
+    <div class="mt-14 pt-8" style="border-top: 1px solid var(--on-dark-hairline);">
+      <p class="max-w-[80ch] text-[0.78rem] leading-relaxed" style="color: var(--on-dark-muted);">
+        Information on this site is general and is not a diagnosis, a treatment
+        recommendation, or a substitute for medical advice. Whether any approach is
+        appropriate is decided through individual consultation. Health advertising in
+        Malaysia is subject to the Medicine (Advertisement and Sale) Act 1956 and the
+        requirements of the Medical Advertisements Board.
       </p>
-      <p class="mt-6 text-[0.78rem]" style="color: var(--graphite);">
+      <p class="mt-6 text-[0.78rem]" style="color: var(--on-dark-muted);">
         &copy; {new Date().getFullYear()} Cellove Wellness. Self Love Begins With Cell Love.
       </p>
     </div>

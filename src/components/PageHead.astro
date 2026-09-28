@@ -1,0 +1,11 @@
+---
+/** Shared page opener: eyebrow, display heading, optional standfirst. */
+const { eyebrow, heading, body } = Astro.props;
+---
+<section class="ground-white">
+  <div class="mx-auto max-w-[1440px] px-5 pt-20 pb-12 sm:px-8 lg:pt-28 lg:pb-16">
+    <p class="label" data-reveal>{eyebrow}</p>
+    <h1 class="display mt-5 max-w-[22ch] text-[2.4rem] sm:text-[3rem] lg:text-[3.4rem]" data-reveal>{heading}</h1>
+    {body && <p class="mt-7 max-w-[52ch] text-[1.04rem] leading-relaxed" data-reveal>{body}</p>}
+  </div>
+</section>

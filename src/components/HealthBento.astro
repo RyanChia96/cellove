@@ -1,0 +1,50 @@
+---
+/**
+ * Section 3, health areas as a bento. Mixed tile spans rather than an even
+ * grid, so the eye has somewhere to start.
+ *
+ * Grouped deliberately: the brief rules out publishing a disease catalogue,
+ * so these are broad areas and the copy says suitability is decided in
+ * consultation, not from this page.
+ */
+const tiles = [
+  { k: 'Preventive health', d: 'People who feel well and want to keep it that way.', img: 'bento-preventive', span: 'lg:col-span-5', alt: 'A quiet interior with warm daylight.' },
+  { k: 'Healthy ageing', d: 'Staying capable for longer, rather than chasing youth.', img: 'bento-ageing', span: 'lg:col-span-4', alt: 'A warm plaster wall in raking light.' },
+  { k: 'Regenerative and cellular health', d: 'Where cellular approaches are considered, and where they are not.', span: 'lg:col-span-3' },
+  { k: 'Skin and hair health', d: 'Usually alongside one of the areas above, rarely on its own.', span: 'lg:col-span-4' },
+  { k: 'Other relevant areas', d: 'Joints and movement, heart, kidneys, immunity, and how the body handles energy. Bring the question and we will tell you whether it is one for us.', img: 'bento-other', span: 'lg:col-span-8', alt: 'A simple chair on a herringbone floor.' },
+];
+---
+<section id="health" class="ground-white edge-top">
+  <div class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:py-24">
+    <p class="label" data-reveal>Health &amp; wellness</p>
+    <h2 class="display mt-5 max-w-[20ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" data-reveal>
+      What people come to us about.
+    </h2>
+    <p class="mt-6 max-w-[54ch] text-[1.02rem] leading-relaxed" data-reveal>
+      Whether any approach suits you is decided in consultation with a doctor, never
+      from a list on a website.
+    </p>
+
+    <div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+      {tiles.map((t) => (
+        <article class={`sheet flex flex-col overflow-hidden ${t.span}`} data-reveal>
+          {t.img && (
+            <img
+              src={`/media/${t.img}.jpg`}
+              alt={t.alt}
+              loading="lazy" decoding="async" width="1000" height="560"
+              class="w-full object-cover"
+              style="aspect-ratio: 16 / 9; background: var(--beige);"
+            />
+          )}
+          <div class="flex flex-1 flex-col p-7">
+            <h3 class="display text-[1.4rem]">{t.k}</h3>
+            <p class="mt-3 text-[0.93rem] leading-relaxed">{t.d}</p>
+            {!t.img && <div class="ruler mt-auto pt-8"></div>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

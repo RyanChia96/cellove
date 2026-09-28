@@ -1,0 +1,61 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+
+const title = 'About Us | Cellove Wellness';
+const description =
+  'Where the name Cellove comes from, and why the centre was set up to answer health questions with evidence.';
+
+// PLACEHOLDER. None of these are invented values; each is marked unconfirmed
+// so the page cannot ship looking finished when it is not.
+const facts = [
+  ['Established', 'Year to be confirmed'],
+  ['Location', 'Kuala Lumpur, Malaysia'],
+  ['Practitioners', 'Count to be confirmed'],
+  ['Registration', 'MOH reference to be confirmed'],
+];
+---
+<Page title={title} description={description} formGround="beige">
+  <PageHead eyebrow="About" heading="Where the name comes from." />
+
+  <section class="ground-white">
+    <div class="mx-auto grid max-w-[1440px] gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-12 lg:gap-16 lg:pb-24">
+      <div class="lg:col-span-6">
+        <div class="max-w-[46ch] space-y-5 text-[1.04rem] leading-relaxed" data-reveal>
+          <p>
+            Cellove starts from a simple idea: caring for yourself begins with
+            understanding the parts of you that do the work. Cells first, then
+            everything built on them.
+          </p>
+          <p>
+            The centre was set up to give people a place where health questions get
+            answered with evidence rather than with whatever is trending that month.
+          </p>
+        </div>
+
+        <div class="ruler mt-12"></div>
+        <dl class="mt-8 grid gap-x-10 gap-y-7 sm:grid-cols-2" data-reveal>
+          {facts.map(([k, v]) => (
+            <div>
+              <dt class="label">{k}</dt>
+              <dd class="mt-2 text-[0.98rem]" style="color: var(--ink);">{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <p class="annot mt-10 max-w-[26ch]" data-reveal>
+          Placeholder facts. Replace before anything goes live.
+        </p>
+      </div>
+
+      <div class="lg:col-span-6" data-reveal>
+        <img
+          src="/media/about-clinic.jpg"
+          alt="A quiet consulting space with natural light."
+          loading="lazy" decoding="async" width="1200" height="800"
+          class="w-full object-cover"
+          style="aspect-ratio: 3 / 2; background: var(--beige);"
+        />
+      </div>
+    </div>
+  </section>
+</Page>

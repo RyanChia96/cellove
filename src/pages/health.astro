@@ -1,0 +1,26 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+import Health from '../components/Health.astro';
+import Journey from '../components/Journey.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const title = 'Health & Wellness | Cellove Wellness';
+const description =
+  'The areas of health people bring to Cellove, and how a case moves from first question to ongoing support.';
+---
+<Page title={title} description={description} formGround="beige">
+  <PageHead
+    eyebrow="Health & Wellness"
+    heading="What people come to us about."
+    body="Whether any approach suits you is decided in consultation with a doctor, never from a list on a website."
+  />
+  <Health />
+  <Journey />
+  <CtaBand
+    heading="Not sure which of these is yours?"
+    body="That is a normal place to start. Tell us the symptom or the goal and we will take it from there."
+    label="Contact Us"
+    href="/contact"
+  />
+</Page>

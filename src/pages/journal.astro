@@ -1,0 +1,19 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+import Journal from '../components/Journal.astro';
+import Pagination from '../components/Pagination.astro';
+
+const title = 'The Cellove Journal | Cellove Wellness';
+const description =
+  'Plain explanations of how cellular health works: how to weigh a health claim, what absorption means, and how to tell evidence from a marketing cycle.';
+---
+<Page title={title} description={description}>
+  <PageHead
+    eyebrow="The Cellove Journal"
+    heading="Written to be understood."
+    body="Plain explanations of how cellular health works, without the marketing language that usually comes with it."
+  />
+  <Journal />
+  <Pagination current={1} total={4} count={12} />
+</Page>

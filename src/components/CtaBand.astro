@@ -1,0 +1,24 @@
+---
+/**
+ * Mid-page CTA on beige. Sits between two light content blocks to give the
+ * scroll a pause. Heading, body and button label are set per page.
+ */
+import { Icon } from 'astro-icon/components';
+const { eyebrow = 'Next', heading, body, label, href } = Astro.props;
+---
+<section class="ground-beige edge-top">
+  <div class="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:py-20">
+    <p class="label" data-reveal>{eyebrow}</p>
+    <h2 class="display mt-5 max-w-[20ch] text-[2rem] sm:text-[2.4rem]" data-reveal>{heading}</h2>
+    {body && <p class="mt-5 max-w-[46ch] text-[1.02rem] leading-relaxed" data-reveal>{body}</p>}
+    <a
+      href={href}
+      class="mt-9 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+      style="background: var(--ink); color: var(--white);"
+      data-reveal
+    >
+      {label}
+      <Icon aria-hidden="true" name="ph:arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
+</section>

@@ -1,63 +1,18 @@
 ---
-import Base from '../layouts/Base.astro';
-import Nav from '../components/Nav.astro';
+import Page from '../layouts/Page.astro';
 import Hero from '../components/Hero.astro';
-import Myth from '../components/Myth.astro';
-import WhatIs from '../components/WhatIs.astro';
-import Pillars from '../components/Pillars.astro';
-import WhyCellove from '../components/WhyCellove.astro';
-import Absorption from '../components/Absorption.astro';
-import Health from '../components/Health.astro';
-import Journey from '../components/Journey.astro';
-import Doctors from '../components/Doctors.astro';
-import Journal from '../components/Journal.astro';
-import Close from '../components/Close.astro';
-import Footer from '../components/Footer.astro';
-import WhatsAppFab from '../components/WhatsAppFab.astro';
+import WhyUs from '../components/WhyUs.astro';
+import HealthBento from '../components/HealthBento.astro';
+import JournalTeaser from '../components/JournalTeaser.astro';
 
 // MEDICAL AND LEGAL REVIEW REQUIRED. No outcome, efficacy or treatment claim is made.
 const title = 'Cellove Wellness | Doctor-led cellular wellness centre in Malaysia';
 const description =
-  'Cellove Wellness is a premium, doctor-led wellness centre in Kuala Lumpur combining cell technology, absorption science and scientific data to support better-informed health decisions.';
+  'Cellove Wellness is a doctor-led wellness centre in Kuala Lumpur combining cell technology, absorption science and scientific data to support better-informed health decisions.';
 ---
-<Base title={title} description={description}>
-  <Nav />
-  <main id="main">
-    <Hero />
-    <Myth />
-    <WhatIs />
-    <Pillars />
-    <WhyCellove />
-    <Absorption />
-    <Health />
-    <Journey />
-    <Doctors />
-    <Journal />
-    <Close />
-  </main>
-  <Footer />
-  <WhatsAppFab />
-</Base>
-
-<script>
-  // Scroll reveal via IntersectionObserver. A scroll event listener would run on
-  // every frame; this does not. The .js-motion gate in Base.astro means reduced
-  // motion and no-JS visitors get fully visible content with no observer at all.
-  if (document.documentElement.classList.contains('js-motion')) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-visible');
-            io.unobserve(e.target);
-          }
-        }
-      },
-      { threshold: 0.18, rootMargin: '0px 0px -40px 0px' }
-    );
-    document.querySelectorAll('[data-reveal]').forEach((el, i) => {
-      (el as HTMLElement).style.transitionDelay = `${Math.min(i % 6, 5) * 55}ms`;
-      io.observe(el);
-    });
-  }
-</script>
+<Page title={title} description={description}>
+  <Hero />
+  <WhyUs />
+  <HealthBento />
+  <JournalTeaser />
+</Page>

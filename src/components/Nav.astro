@@ -1,19 +1,27 @@
 ---
+/**
+ * Global navigation. Matches Figma page 08 · Notebook · Site.
+ *
+ * Items point at real routes rather than on-page anchors, because the site
+ * is six pages now, not one. "Why Cellove" is the exception: it is Section 2
+ * of the homepage, so it stays an anchor.
+ */
 import { Icon } from 'astro-icon/components';
+
 const links = [
-  { href: '#why', label: 'Why Cellove' },
-  { href: '#science', label: 'Our Science' },
-  { href: '#health', label: 'Health & Wellness' },
-  { href: '#doctors', label: 'Our Doctors' },
-  { href: '#journal', label: 'Journal' },
+  { href: '/#why-us', label: 'Why Cellove' },
+  { href: '/science', label: 'Our Science' },
+  { href: '/health', label: 'Health & Wellness' },
+  { href: '/about', label: 'About Us' },
+  { href: '/journal', label: 'Journal' },
 ];
 ---
 <header
   class="sticky top-0 z-50 backdrop-blur-md"
-  style="background: color-mix(in srgb, var(--white) 86%, transparent); border-bottom: 1px solid var(--hairline);"
+  style="background: color-mix(in srgb, var(--white) 88%, transparent); border-bottom: 1px solid var(--hairline);"
 >
   <nav
-    class="mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-6 px-5 sm:px-8"
+    class="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-6 px-5 sm:px-8"
     aria-label="Primary"
   >
     <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="Cellove Wellness, home">
@@ -35,7 +43,7 @@ const links = [
 
     <div class="flex shrink-0 items-center gap-3">
       <a
-        href="#start"
+        href="/contact"
         class="hidden whitespace-nowrap rounded-full px-5 py-2.5 text-[0.8rem] font-medium transition-transform duration-200 active:scale-[0.98] md:inline-block"
         style="background: var(--ink); color: var(--white);"
       >Start Your Cellove Journey</a>
@@ -53,28 +61,18 @@ const links = [
     </div>
   </nav>
 
-  <div
-    id="navPanel"
-    hidden
-    class="lg:hidden"
-    style="border-top: 1px solid var(--hairline); background: var(--white);"
-  >
-    <ul class="mx-auto flex max-w-[1400px] flex-col px-5 py-3 sm:px-8">
+  <div id="navPanel" hidden class="lg:hidden" style="border-top: 1px solid var(--hairline); background: var(--white);">
+    <ul class="mx-auto flex max-w-[1440px] flex-col px-5 py-3 sm:px-8">
       {links.map((l) => (
         <li>
-          <a
-            href={l.href}
-            class="block py-3 text-[0.95rem]"
-            style="color: var(--graphite); border-bottom: 1px solid var(--hairline);"
-          >{l.label}</a>
+          <a href={l.href} class="block py-3 text-[0.95rem]" style="color: var(--graphite); border-bottom: 1px solid var(--hairline);">{l.label}</a>
         </li>
       ))}
+      <li>
+        <a href="/contact" class="block py-3 text-[0.95rem]" style="color: var(--graphite); border-bottom: 1px solid var(--hairline);">Contact Us</a>
+      </li>
       <li class="pt-4 pb-2">
-        <a
-          href="#start"
-          class="block rounded-full px-5 py-3 text-center text-[0.9rem] font-medium"
-          style="background: var(--ink); color: var(--white);"
-        >Start Your Cellove Journey</a>
+        <a href="/contact" class="block rounded-full px-5 py-3 text-center text-[0.9rem] font-medium" style="background: var(--ink); color: var(--white);">Start Your Cellove Journey</a>
       </li>
     </ul>
   </div>

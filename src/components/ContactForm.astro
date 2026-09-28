@@ -1,0 +1,83 @@
+---
+/**
+ * Contact form. Light ground, per Figma page 08.
+ *
+ * Underlined inputs rather than boxes, to match the notebook ruling.
+ * Labels sit above inputs, never as placeholders. Appears at the bottom of
+ * every page via the Page layout.
+ *
+ * No backend is wired yet: the form posts nowhere and is marked as such.
+ */
+const { ground = 'white' } = Astro.props;
+---
+<section
+  id="contact-form"
+  class="edge-top"
+  style={`background: var(--${ground === 'beige' ? 'beige' : 'white'});`}
+>
+  <div class="mx-auto grid max-w-[1440px] gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:py-24">
+    <div>
+      <p class="label" data-reveal>Contact</p>
+      <h2 class="display mt-5 text-[2.1rem] sm:text-[2.5rem]" data-reveal>
+        Start with a conversation.
+      </h2>
+      <p class="mt-6 max-w-[38ch] text-[1.02rem] leading-relaxed" data-reveal>
+        Tell us what you want to change about your health. We will say what we can
+        help with, what we cannot, and what sits behind either answer.
+      </p>
+      <p class="mt-7 text-[0.95rem]" style="color: var(--annot);" data-reveal>
+        We reply within one working day.
+      </p>
+    </div>
+
+    <form class="grid gap-7 sm:grid-cols-2" data-reveal novalidate>
+      <div class="grid gap-2">
+        <label class="label" for="cf-name">Name</label>
+        <input
+          id="cf-name" name="name" type="text" autocomplete="name" required
+          class="bg-transparent pb-2 text-[0.98rem] outline-none"
+          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
+        />
+      </div>
+      <div class="grid gap-2">
+        <label class="label" for="cf-phone">WhatsApp or phone</label>
+        <input
+          id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
+          class="bg-transparent pb-2 text-[0.98rem] outline-none"
+          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
+        />
+      </div>
+      <div class="grid gap-2 sm:col-span-2">
+        <label class="label" for="cf-email">Email</label>
+        <input
+          id="cf-email" name="email" type="email" inputmode="email" autocomplete="email"
+          spellcheck="false" required
+          class="bg-transparent pb-2 text-[0.98rem] outline-none"
+          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
+        />
+      </div>
+      <div class="grid gap-2 sm:col-span-2">
+        <label class="label" for="cf-message">What would you like to understand?</label>
+        <textarea
+          id="cf-message" name="message" rows="3"
+          class="resize-y bg-transparent pb-2 text-[0.98rem] outline-none"
+          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
+        ></textarea>
+      </div>
+
+      <div class="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center">
+        <button
+          type="submit"
+          class="shrink-0 rounded-full px-8 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+          style="background: var(--ink); color: var(--white);"
+        >Send</button>
+        <p class="max-w-[42ch] text-[0.8rem] leading-relaxed" style="color: var(--pencil);">
+          By sending this you agree we may contact you about your enquiry. We do not
+          share your details.
+        </p>
+      </div>
+      {/* TODO: no submit handler yet. Wire to a form endpoint or mail service
+          before launch, and add success and error states. */}
+    </form>
+  </div>
+</section>

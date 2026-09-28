@@ -1,0 +1,36 @@
+---
+/**
+ * Journal pagination.
+ *
+ * SEO note: this only helps if each page is a real crawlable URL
+ * (/journal/2), not a client-side swap. Hrefs are wired that way already;
+ * the routes themselves still need building once there are real posts.
+ */
+const { current = 1, total = 4, count = 12 } = Astro.props;
+const pages = Array.from({ length: total }, (_, i) => i + 1);
+---
+<section class="ground-white">
+  <div class="mx-auto max-w-[1440px] px-5 pb-24 sm:px-8">
+    <div class="ruler"></div>
+    <nav class="mt-6 flex flex-wrap items-center justify-between gap-6" aria-label="Journal pages">
+      <ul class="flex items-center gap-2">
+        {pages.map((p) => (
+          <li>
+            <a
+              href={p === 1 ? '/journal' : `/journal/${p}`}
+              aria-current={p === current ? 'page' : undefined}
+              class="grid h-10 w-10 place-items-center rounded-full text-[0.9rem] font-medium transition-colors duration-200"
+              style={p === current
+                ? 'background: var(--ink); color: var(--white);'
+                : 'border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); color: var(--ink);'}
+            >{p}</a>
+          </li>
+        ))}
+        <li class="ml-2">
+          <a href={`/journal/${Math.min(current + 1, total)}`} class="text-[0.9rem] font-medium" style="color: var(--ink);">Next</a>
+        </li>
+      </ul>
+      <p class="measure">Page {current} of {total} &middot; {count} articles</p>
+    </nav>
+  </div>
+</section>

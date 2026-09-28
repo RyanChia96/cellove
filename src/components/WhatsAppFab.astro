@@ -1,5 +1,5 @@
 ---
-/** Persistent WhatsApp entry point on mobile, per brief section 25. */
+/** Persistent WhatsApp entry point, fixed bottom-right on every page. */
 import { Icon } from 'astro-icon/components';
 import { WHATSAPP_HREF } from '../lib/site';
 ---
@@ -7,9 +7,9 @@ import { WHATSAPP_HREF } from '../lib/site';
   href={WHATSAPP_HREF}
   target="_blank"
   rel="noopener noreferrer"
-  class="safe-bottom safe-right fixed z-50 grid h-14 w-14 place-items-center rounded-full shadow-lg transition-transform duration-200 active:scale-95 md:hidden"
-  style="background: var(--ink); color: var(--white); box-shadow: 0 10px 30px rgb(35 32 31 / 0.28);"
-  aria-label="WhatsApp Cellove Wellness"
+  class="safe-bottom safe-right fixed z-50 grid h-14 w-14 place-items-center rounded-full transition-transform duration-200 hover:-translate-y-0.5 active:scale-95"
+  style="background: var(--dark); color: var(--white); box-shadow: 0 8px 24px rgb(41 49 57 / 0.32);"
+  aria-label="Message Cellove Wellness on WhatsApp"
 >
   <Icon aria-hidden="true" name="ph:whatsapp-logo" class="h-6 w-6" />
 </a>
