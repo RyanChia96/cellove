@@ -1,0 +1,10 @@
+---
+/**
+ * A business detail the client has not supplied. Renders as a loud highlighted
+ * placeholder rather than plausible-looking filler, because an invented company
+ * number or address in a privacy policy is worse than an obvious gap.
+ */
+interface Props { what: string; }
+const { what } = Astro.props;
+---
+<mark class="tbc">[{what} &mdash; to be confirmed]</mark>

@@ -16,12 +16,13 @@ const socials = [
 const cols = [
   { head: 'Explore', links: [['Why Cellove', '/#why-us'], ['Our Science', '/science'], ['Health & Wellness', '/health']] },
   { head: 'About', links: [['About Us', '/about'], ['The Cellove Journal', '/journal'], ['Contact Us', '/contact']] },
+  { head: 'Legal', links: [['Privacy Policy', '/privacy'], ['Terms of Service', '/terms'], ['Cookie Policy', '/cookies']] },
 ];
 ---
 <footer class="ground-dark">
   <div class="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:py-20">
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
-      <div class="lg:col-span-5">
+      <div class="lg:col-span-3">
         <a href="/" class="flex items-center gap-2.5" aria-label="Cellove Wellness, home">
           <img src="/media/logo-white.svg" alt="Cellove Wellness" width="149" height="36" class="h-10 w-auto" />
         </a>
@@ -33,20 +34,35 @@ const cols = [
         <ul class="mt-4 flex items-center gap-3">
           {socials.map((s) => (
             <li>
-              <a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.name}
-                class="grid h-10 w-10 place-items-center rounded-full transition-colors duration-200"
-                style="border: 1px solid var(--on-dark-hairline); color: var(--on-dark);"
-              >
-                <Icon aria-hidden="true" name={s.icon} class="h-[18px] w-[18px]" />
-              </a>
+              {s.href === '#' ? (
+                /* No account URL yet. Rendered as a non-interactive placeholder
+                   rather than a link to "#": a dead link is a keyboard trap in
+                   miniature, four tab stops on every page that go nowhere, and
+                   it reads to a screen reader as a real destination. */
+                <span
+                  aria-hidden="true"
+                  class="grid h-10 w-10 place-items-center rounded-full opacity-40"
+                  style="border: 1px solid var(--on-dark-hairline); color: var(--on-dark);"
+                >
+                  <Icon name={s.icon} class="h-[18px] w-[18px]" />
+                </span>
+              ) : (
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                  class="grid h-10 w-10 place-items-center rounded-full transition-colors duration-200"
+                  style="border: 1px solid var(--on-dark-hairline); color: var(--on-dark);"
+                >
+                  <Icon aria-hidden="true" name={s.icon} class="h-[18px] w-[18px]" />
+                </a>
+              )}
             </li>
           ))}
         </ul>
-        {/* TODO: social URLs are placeholders until the accounts are confirmed. */}
+        {/* Supply the real profile URLs in `socials` above and each icon becomes
+            a live link automatically. Until then they render inert. */}
       </div>
 
       {cols.map((c) => (
@@ -61,8 +77,7 @@ const cols = [
           </ul>
         </nav>
       ))}
-      <div class="lg:col-span-1"></div>
-    </div>
+          </div>
 
     <div class="mt-14 pt-8" style="border-top: 1px solid var(--on-dark-hairline);">
       <p class="max-w-[80ch] text-[0.78rem] leading-relaxed" style="color: var(--on-dark-muted);">

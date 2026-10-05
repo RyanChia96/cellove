@@ -6,9 +6,26 @@
  * Labels sit above inputs, never as placeholders. Appears at the bottom of
  * every page via the Page layout.
  *
+ * Consent is an explicit unticked checkbox, not a sentence under the button.
+ * Under the PDPA a health enquiry is sensitive personal data and needs consent
+ * that was actually given, so it has to be an act the visitor performs. It is
+ * never pre-ticked: a pre-ticked consent box is the dark pattern this field
+ * exists to avoid.
+ *
+ * The inputs previously carried outline-none, which silently removed the
+ * global :focus-visible ring and left keyboard users with no visible position
+ * in the form. The ring is back.
+ *
+ * `novalidate` has been removed. There is no JavaScript on this form, so the
+ * browser's own required-field checking is the only validation standing
+ * between a visitor and a submission with no consent and no email.
+ *
  * No backend is wired yet: the form posts nowhere and is marked as such.
  */
 const { ground = 'white' } = Astro.props;
+
+const field =
+  'bg-transparent pb-2 text-[0.98rem] [border-bottom:1px_solid_color-mix(in_srgb,var(--ink)_25%,transparent)] [color:var(--ink)]';
 ---
 <section
   id="contact-form"
@@ -28,41 +45,56 @@ const { ground = 'white' } = Astro.props;
       <p class="mt-7 text-[0.95rem]" style="color: var(--annot);" data-reveal>
         We reply within one working day.
       </p>
+      <p class="mt-7 max-w-[40ch] text-[0.82rem] leading-relaxed" style="color: var(--pencil);" data-reveal>
+        Please keep medical detail out of this form. Name the area you want to discuss
+        and we will take the detail in consultation, where it is properly protected.
+      </p>
     </div>
 
-    <form class="grid gap-7 sm:grid-cols-2" data-reveal novalidate>
+    <form class="grid gap-7 sm:grid-cols-2" data-reveal>
       <div class="grid gap-2">
         <label class="label" for="cf-name">Name</label>
-        <input
-          id="cf-name" name="name" type="text" autocomplete="name" required
-          class="bg-transparent pb-2 text-[0.98rem] outline-none"
-          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
-        />
+        <input id="cf-name" name="name" type="text" autocomplete="name" required class={field} />
       </div>
       <div class="grid gap-2">
-        <label class="label" for="cf-phone">WhatsApp or phone</label>
-        <input
-          id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel"
-          class="bg-transparent pb-2 text-[0.98rem] outline-none"
-          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
-        />
+        <label class="label" for="cf-phone">
+          WhatsApp or phone <span style="text-transform: none; letter-spacing: 0;">(optional)</span>
+        </label>
+        <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" class={field} />
       </div>
       <div class="grid gap-2 sm:col-span-2">
         <label class="label" for="cf-email">Email</label>
         <input
           id="cf-email" name="email" type="email" inputmode="email" autocomplete="email"
-          spellcheck="false" required
-          class="bg-transparent pb-2 text-[0.98rem] outline-none"
-          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
+          spellcheck="false" required class={field}
         />
       </div>
       <div class="grid gap-2 sm:col-span-2">
-        <label class="label" for="cf-message">What would you like to understand?</label>
+        <label class="label" for="cf-message">
+          What would you like to understand? <span style="text-transform: none; letter-spacing: 0;">(optional)</span>
+        </label>
         <textarea
-          id="cf-message" name="message" rows="3"
-          class="resize-y bg-transparent pb-2 text-[0.98rem] outline-none"
-          style="border-bottom: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); color: var(--ink);"
+          id="cf-message" name="message" rows="3" aria-describedby="cf-message-help"
+          class={`resize-y ${field}`}
         ></textarea>
+        <p id="cf-message-help" class="text-[0.78rem] leading-relaxed" style="color: var(--pencil);">
+          A sentence is enough. Please do not include diagnoses, medications or test results.
+        </p>
+      </div>
+
+      <div class="sm:col-span-2">
+        <label for="cf-consent" class="flex cursor-pointer items-start gap-3">
+          <input
+            id="cf-consent" name="consent" type="checkbox" required value="yes"
+            class="mt-0.5 h-[1.05rem] w-[1.05rem] shrink-0 cursor-pointer"
+            style="accent-color: var(--ink);"
+          />
+          <span class="text-[0.85rem] leading-relaxed" style="color: var(--graphite);">
+            I agree that Cellove Wellness may use the details above to reply to this
+            enquiry, and I have read the
+            <a href="/privacy" class="underline underline-offset-2" style="color: var(--ink);">Privacy Policy</a>.
+          </span>
+        </label>
       </div>
 
       <div class="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center">
@@ -72,12 +104,14 @@ const { ground = 'white' } = Astro.props;
           style="background: var(--ink); color: var(--white);"
         >Send</button>
         <p class="max-w-[42ch] text-[0.8rem] leading-relaxed" style="color: var(--pencil);">
-          By sending this you agree we may contact you about your enquiry. We do not
-          share your details.
+          We use your details to answer this enquiry and nothing else. We never sell or
+          share them, and you can ask us to delete them at any time.
         </p>
       </div>
       {/* TODO: no submit handler yet. Wire to a form endpoint or mail service
-          before launch, and add success and error states. */}
+          before launch, and add success and error states. The endpoint must
+          record that the consent box was ticked, and when: under the PDPA the
+          clinic has to be able to show consent was given, not just collected. */}
     </form>
   </div>
 </section>

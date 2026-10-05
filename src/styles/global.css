@@ -45,7 +45,9 @@
 
   --font-display: "Aileron", "Geist Sans", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+  /* Specimen-label face. Was JetBrains Mono; now Aileron at the same tracking,
+     which is what the Figma labels are set in (Aileron SemiBold, 18% tracking). */
+  --font-label: "Aileron", "Geist Sans", ui-sans-serif, system-ui, sans-serif;
   --font-hand: "Caveat Variable", "Caveat", cursive;
 }
 
@@ -53,6 +55,7 @@
   --white: #ffffff;
   --beige: #f3efe5;
   --sheet: #fffdf8;
+  --wa: #25d366;        /* WhatsApp brand green, fixed by them, not ours to tune */
   --beige-deep: #e9e2d4;
   --dark: #293139;
 
@@ -63,6 +66,7 @@
   /* Two rose values, chosen by ground. #d79286 measures 2.52:1 on white,
      failing even the large-text bar, but 5.24:1 on dark. #b76a56 clears
      white at 4.03:1. Each is used only where it passes. */
+  --label-gold: #8c6027;   /* 5.50:1 on white */
   --annot: #b76a56;
   --annot-on-dark: #d79286;
 
@@ -137,7 +141,7 @@ body {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 600;
   color: var(--ink);
   letter-spacing: -0.005em;
   line-height: 1.12;
@@ -146,7 +150,7 @@ body {
 .ground-dark .display { color: var(--on-dark); }
 
 .label {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.17em;
@@ -156,7 +160,7 @@ body {
 .ground-dark .label { color: var(--on-dark-muted); }
 
 .measure {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   color: var(--pencil);
@@ -176,16 +180,6 @@ body {
   background-image: linear-gradient(transparent 62%, color-mix(in srgb, var(--annot) 30%, transparent) 62%);
   background-repeat: no-repeat;
   background-size: 100% 88%;
-}
-
-.ruler { position: relative; height: 1px; background: var(--hairline); }
-.ruler::after {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 6px;
-  background-image: linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 24px 6px;
 }
 
 /* --- Motion ------------------------------------------------------------ */
@@ -208,6 +202,10 @@ body {
 .hero-video.is-playing { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
 
+/* Left edge solid black, easing to fully transparent at the right edge. */
+.hero-fade { background: linear-gradient(to right, #000 0%, #000 40%, rgba(0, 0, 0, 0) 85%); }
+@media (max-width: 1023px) { .hero-fade { background: rgba(0, 0, 0, 0.72); } }
+
 /* --- Web Interface Guidelines conformance ------------------------------ */
 
 h1, h2, h3 { text-wrap: balance; }
@@ -226,11 +224,197 @@ a, button, [role="button"] {
 
 figure.fig { margin: 0; }
 figure.fig figcaption {
-  font-family: var(--font-mono);
+  font-family: var(--font-label);
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   color: var(--pencil);
   margin-top: 0.85rem;
 }
 .fig text { font-family: var(--font-sans); }
-.fig .fig-label { font-family: var(--font-mono); letter-spacing: 0.1em; }
+.fig .fig-label { font-family: var(--font-label); letter-spacing: 0.1em; }
+
+/* WhatsApp FAB.
+   The dock is 98px so the 1.75x halo stays inside it; a halo crossing the
+   viewport edge would widen the document and introduce horizontal scroll. */
+.fab-dock {
+  width: 6.125rem;
+  height: 6.125rem;
+  bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  right: calc(0.5rem + env(safe-area-inset-right, 0px));
+}
+.fab-pulse {
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background: var(--wa);
+  pointer-events: none;
+  animation: fab-pulse 2.8s cubic-bezier(0.25, 0.6, 0.4, 1) infinite;
+}
+.fab-pulse--lag { animation-delay: 1.4s; }
+@keyframes fab-pulse {
+  0%   { transform: scale(1);    opacity: 0.28; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fab-pulse { animation: none; opacity: 0.22; }
+  .fab-pulse--lag { display: none; }
+}
+
+/* Legal pages. Long-form prose, so headings and lists need real rhythm. */
+.legal-prose h2 {
+  font-family: var(--font-display, inherit);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin-top: 3rem;
+  margin-bottom: 0.9rem;
+  color: var(--ink);
+}
+.legal-prose h3 {
+  font-size: 1.02rem;
+  font-weight: 500;
+  margin-top: 1.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.legal-prose p,
+.legal-prose li { font-size: 0.98rem; line-height: 1.75; color: var(--graphite); }
+.legal-prose p { margin-bottom: 1rem; }
+.legal-prose ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1.1rem; }
+.legal-prose ol { list-style: decimal; padding-left: 1.3rem; margin-bottom: 1.1rem; }
+.legal-prose li { margin-bottom: 0.45rem; }
+.legal-prose a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.legal-prose a:hover { opacity: 0.7; }
+.legal-prose strong { color: var(--ink); font-weight: 500; }
+.legal-prose .callout {
+  border-left: 2px solid var(--annot);
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  margin: 1.5rem 0;
+}
+
+/* An unsupplied business detail. Deliberately loud: a placeholder that blends
+   in is a placeholder that gets published. */
+.tbc {
+  background: #fff3cd;
+  color: #5c4708;
+  border-bottom: 1px dashed #b78a16;
+  padding: 0 0.25em;
+  font-size: 0.92em;
+  border-radius: 2px;
+}
+
+/* --- Evidence ladder ---------------------------------------------------- */
+/* Replaces the old bar chart. Ordering is carried by ink weight and type
+   weight, never by length, so nothing states a quantity. */
+
+.evidence-lede {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--annot);
+  max-width: 34ch;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+}
+
+.evidence-ladder {
+  position: relative;
+  max-width: 48rem;
+  margin: 0.9rem auto 0;
+  padding-left: 2rem;
+  list-style: none;
+}
+
+/* One continuous rule rather than a border on every row. It gains ink as it
+   descends, which is the whole argument in a single element. */
+.evidence-ladder::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ink) 10%, transparent),
+    var(--ink)
+  );
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.rung {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: 0.35rem 2rem;
+  align-items: baseline;
+  padding: 1.15rem 0;
+}
+
+.rung-name {
+  font-family: var(--font-display);
+  /* Each rung sits a little heavier and a little darker than the one above. */
+  font-size: calc(1.08rem + var(--step) * 0.42rem);
+  font-weight: calc(300 + var(--step) * 300);
+  letter-spacing: -0.005em;
+  color: color-mix(in srgb, var(--ink) calc(45% + var(--step) * 55%), var(--white));
+}
+
+.rung-gloss {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--graphite);
+}
+
+.evidence-pole {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding-left: 2rem;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--pencil);
+}
+.evidence-pole--strong { margin-top: 1.1rem; color: var(--ink); }
+
+.evidence-note {
+  max-width: 48rem;
+  margin: 2.5rem auto 0;
+  padding-left: 2rem;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--pencil);
+}
+
+@media (max-width: 640px) {
+  .rung { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
+  .evidence-pole { font-size: 0.6rem; letter-spacing: 0.12em; }
+}
+
+/* Motion. Rungs arrive weakest first and the rule draws down behind them, so
+   the eye climbs the hierarchy in the order the copy says to read it. */
+.js-motion .evidence-ladder .rung {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.js-motion .evidence-ladder.is-visible .rung {
+  animation: rung-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i) * 140ms);
+}
+.js-motion .evidence-ladder.is-visible::before {
+  animation: rule-draw 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes rung-in {
+  to { opacity: 1; transform: none; }
+}
+@keyframes rule-draw {
+  to { transform: scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evidence-ladder::before { transform: scaleY(1); }
+  .evidence-ladder .rung { opacity: 1; transform: none; animation: none; }
+}

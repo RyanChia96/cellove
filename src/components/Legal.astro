@@ -1,0 +1,16 @@
+---
+/**
+ * Prose wrapper for the three legal pages. Narrow measure, generous leading,
+ * numbered headings, so a long document stays readable rather than becoming
+ * the wall of small grey text these pages usually are.
+ */
+import { LEGAL_LAST_UPDATED } from '../lib/legal';
+---
+<section class="ground-white edge-top">
+  <div class="mx-auto max-w-[1440px] px-5 py-16 sm:px-8 lg:py-20">
+    <div class="legal-prose max-w-[68ch]">
+      <p class="label" style="color: var(--pencil);">Last updated {LEGAL_LAST_UPDATED}</p>
+      <slot />
+    </div>
+  </div>
+</section>

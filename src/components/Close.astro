@@ -2,6 +2,7 @@
 /** Centred close. The one place on the page where centring is the right move:
  *  a single decision, nothing competing with it. */
 import { Icon } from 'astro-icon/components';
+import IconWhatsApp from './IconWhatsApp.astro';
 import { WHATSAPP_HREF } from '../lib/site';
 ---
 <section id="start" class="mx-auto max-w-[1400px] px-5 py-28 text-center sm:px-8 lg:py-40">
@@ -31,7 +32,7 @@ import { WHATSAPP_HREF } from '../lib/site';
       class="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full px-8 py-4 text-[0.92rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98] sm:w-auto"
       style="border: 1px solid var(--ink); color: var(--ink);"
     >
-      <Icon aria-hidden="true" name="ph:whatsapp-logo" class="h-4 w-4" />
+      <IconWhatsApp class="h-4 w-4" />
       WhatsApp Us
     </a>
   </div>

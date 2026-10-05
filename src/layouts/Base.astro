@@ -2,12 +2,18 @@
 import '@fontsource/geist-sans/300.css';
 import '@fontsource/geist-sans/400.css';
 import '@fontsource/geist-sans/500.css';
-import '@fontsource-variable/jetbrains-mono';
 import '@fontsource-variable/caveat';
 import '../styles/global.css';
 
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
+
+// Every page used to declare the homepage as its canonical URL, which tells
+// crawlers the inner pages are duplicates of / and keeps them out of the index.
+// That is the opposite of what the Journal pagination was built for.
+const SITE = 'https://cellove.my';
+const path = Astro.url.pathname.replace(/\/+$/, '');
+const canonical = SITE + (path || '/');
 ---
 <!doctype html>
 <html lang="en-MY">
@@ -24,7 +30,7 @@ const { title, description } = Astro.props;
          outcome or efficacy claim, but they still require sign-off. -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href="https://cellove.my/" />
+    <link rel="canonical" href={canonical} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

@@ -1,0 +1,142 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+import Legal from '../components/Legal.astro';
+import Tbc from '../components/Tbc.astro';
+
+// DRAFT FOR LEGAL REVIEW. Not legal advice. The medical disclaimer and the
+// limitation of liability in particular must be settled by a Malaysian lawyer:
+// a clinic cannot contract out of its duty of care, and the wording here is
+// written to sit inside that limit rather than to test it.
+const title = 'Terms of Service | Cellove Wellness';
+const description =
+  'The terms on which Cellove Wellness provides this website, including the medical disclaimer and the limits of the information published here.';
+---
+<Page title={title} description={description}>
+  <PageHead
+    eyebrow="Terms"
+    heading="Terms of Service"
+    body="The terms you accept by using this website, and what the information here is and is not."
+  />
+  <Legal>
+    <h2>1. About these terms</h2>
+    <p>
+      This website is operated by <Tbc what="registered legal name" />, company registration
+      number <Tbc what="SSM registration number" />, trading as Cellove Wellness. By using the
+      site you accept these terms. If you do not accept them, please do not use the site.
+    </p>
+
+    <h2>2. This website is not medical advice</h2>
+    <div class="callout">
+      <p>
+        <strong>Nothing on this website is a diagnosis, a treatment recommendation, or a
+        substitute for consulting a doctor.</strong> It is general information about how we
+        think and what we consider.
+      </p>
+    </div>
+    <p>
+      Reading this site, sending an enquiry or messaging us on WhatsApp does not create a
+      doctor-patient relationship. That begins only at a consultation, after a doctor has
+      taken a history and examined you.
+    </p>
+    <p>
+      Whether any approach is appropriate for you is decided in consultation and cannot be
+      decided from a web page. Do not delay seeking medical attention, or stop treatment a
+      doctor has prescribed, because of something you read here.
+    </p>
+    <p>
+      <strong>If you are having a medical emergency, call 999 or go to the nearest emergency
+      department.</strong> We do not monitor this website, email or WhatsApp outside working
+      hours, and neither is a route for urgent care.
+    </p>
+
+    <h2>3. No promises about outcomes</h2>
+    <p>
+      We make no claim and give no guarantee that any approach will produce any particular
+      result. Individual responses differ, and suitability is assessed case by case.
+    </p>
+    <p>
+      Health advertising in Malaysia is regulated by the Medicine (Advertisement and Sale)
+      Act 1956 and the requirements of the Medical Advertisements Board. The content of this
+      site is written to stay inside those limits. If you believe something here overstates
+      what we can do, tell us at <Tbc what="general enquiries email" /> and we will review it.
+    </p>
+
+    <h2>4. Enquiries are not bookings</h2>
+    <p>
+      Sending the enquiry form or a WhatsApp message asks us to get in touch. It does not
+      reserve an appointment and does not commit either of us to anything. An appointment
+      exists only once we have confirmed it with you directly.
+    </p>
+    <p>
+      We may decline an enquiry, and we will say so plainly where what you are asking about
+      is not something we should be handling.
+    </p>
+
+    <h2>5. Using the site</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>use the site unlawfully, or to attempt to gain access to parts of it that are not public;</li>
+      <li>interfere with its operation, or submit anything designed to damage it;</li>
+      <li>submit false information, or someone else&rsquo;s personal data without their permission;</li>
+      <li>copy substantial parts of the site for commercial use without our written permission.</li>
+    </ul>
+
+    <h2>6. Our content</h2>
+    <p>
+      The text, diagrams, photographs, logo and design of this site belong to us or to our
+      licensors and are protected by copyright. You may read, print and share pages for your
+      own personal, non-commercial use, keeping any attribution intact.
+    </p>
+    <p>
+      The two explanatory figures on this site describe general principles of evidence
+      appraisal and delivery. They carry no measurements and are not data about our own
+      results. They may be quoted for educational purposes with attribution.
+    </p>
+
+    <h2>7. Other people&rsquo;s sites</h2>
+    <p>
+      We link to WhatsApp and to social media platforms. Those are run by other companies
+      under their own terms and privacy policies, and we are not responsible for them. A link
+      is not an endorsement.
+    </p>
+
+    <h2>8. Availability</h2>
+    <p>
+      We try to keep the site available and accurate, but we do not promise it will be
+      uninterrupted or error-free. We may change, suspend or withdraw any part of it without
+      notice. Information may become out of date between reviews.
+    </p>
+
+    <h2>9. Liability</h2>
+    <p>
+      To the extent Malaysian law allows, we are not liable for loss arising from reliance on
+      general information published on this website, from the site being unavailable, or from
+      your use of any third-party site we link to.
+    </p>
+    <p>
+      <strong>Nothing in these terms limits or excludes our liability for death or personal
+      injury caused by negligence, for fraud, or for anything else that cannot lawfully be
+      excluded.</strong> In particular, these terms do not affect the duty of care owed to you
+      as a patient once you are under our clinical care.
+    </p>
+
+    <h2>10. Governing law</h2>
+    <p>
+      These terms are governed by the laws of Malaysia, and the courts of Malaysia have
+      exclusive jurisdiction over any dispute arising from them.
+    </p>
+
+    <h2>11. Changes</h2>
+    <p>
+      We may update these terms. The date at the top shows when they last changed, and the
+      version published here is the one that applies.
+    </p>
+
+    <h2>12. Contact</h2>
+    <p>
+      <Tbc what="registered legal name" />, <Tbc what="registered address" />,
+      <Tbc what="general enquiries email" />, <Tbc what="business phone" />.
+    </p>
+  </Legal>
+</Page>

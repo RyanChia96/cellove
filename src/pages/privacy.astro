@@ -1,0 +1,171 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+import Legal from '../components/Legal.astro';
+import Tbc from '../components/Tbc.astro';
+
+// DRAFT FOR LEGAL REVIEW. Prepared against the Personal Data Protection Act
+// 2010 (Act 709). Not legal advice. Must be reviewed by a Malaysian lawyer
+// before publication, and re-reviewed if any analytics, advertising pixel or
+// booking system is added later.
+const title = 'Privacy Policy | Cellove Wellness';
+const description =
+  'How Cellove Wellness collects, uses and protects personal data, and your rights under the Personal Data Protection Act 2010.';
+---
+<Page title={title} description={description}>
+  <PageHead
+    eyebrow="Privacy"
+    heading="Privacy Policy"
+    body="What we collect when you contact us, why we hold it, and what you can ask us to do with it."
+  />
+  <Legal>
+    <div class="callout">
+      <p>
+        <strong>Please do not send detailed medical information through this website.</strong>
+        Tell us the general area you want help with. Anything clinical is better discussed
+        in consultation, where it can be recorded and protected properly.
+      </p>
+    </div>
+
+    <h2>1. Who we are</h2>
+    <p>
+      This website is operated by <Tbc what="registered legal name" />, company registration
+      number <Tbc what="SSM registration number" />, registered at <Tbc what="registered address" />,
+      trading as Cellove Wellness. In this policy, &ldquo;we&rdquo; and &ldquo;us&rdquo; mean that company.
+    </p>
+    <p>
+      We are the data user for the purposes of the Personal Data Protection Act 2010
+      (Act 709) of Malaysia, which governs how we handle your personal data.
+    </p>
+
+    <h2>2. What this policy covers</h2>
+    <p>
+      It covers personal data we collect through this website and through enquiries that
+      start here. It does not cover the clinical records we keep about patients we treat,
+      which are governed separately by Malaysian medical records and confidentiality
+      obligations, nor does it cover other companies&rsquo; websites we link to.
+    </p>
+
+    <h2>3. What we collect</h2>
+    <h3>Information you give us</h3>
+    <p>When you use the enquiry form, we collect:</p>
+    <ul>
+      <li>your name;</li>
+      <li>your email address;</li>
+      <li>your phone or WhatsApp number, if you choose to give one;</li>
+      <li>whatever you write in the message field.</li>
+    </ul>
+    <p>
+      Your name and email are required because we cannot reply without them. Everything
+      else is optional. We do not ask for your identity card number, date of birth, home
+      address, occupation, income or payment details through this website, and you should
+      not send them.
+    </p>
+
+    <h3>Information collected automatically</h3>
+    <p>
+      Our hosting provider, <Tbc what="hosting provider" />, keeps standard server logs that
+      may include your IP address, browser type and the pages you requested. These are used
+      to keep the site running and secure, not to build a profile of you.
+    </p>
+    <p>
+      <strong>This website sets no cookies and runs no analytics, advertising pixels or
+      third-party trackers.</strong> See our <a href="/cookies">Cookie Policy</a>.
+    </p>
+
+    <h2>4. Health information</h2>
+    <p>
+      Information about your physical or mental health is <strong>sensitive personal
+      data</strong> under the Act, and may only be processed with your explicit consent. If
+      you choose to describe a health concern in the message field, you are giving us that
+      consent for the sole purpose of answering your enquiry.
+    </p>
+    <p>
+      We would rather you did not. The enquiry form is ordinary email infrastructure, not a
+      clinical system. Say which area you want to discuss and leave the detail for the
+      consultation.
+    </p>
+
+    <h2>5. Why we use your data, and on what basis</h2>
+    <ul>
+      <li><strong>To answer your enquiry</strong> and arrange a consultation if you want one. Basis: your consent, given when you submit the form.</li>
+      <li><strong>To keep a record of what was asked and answered</strong>, so that anything we tell you is traceable. Basis: our legitimate interest in running a medical service responsibly.</li>
+      <li><strong>To keep the website secure.</strong> Basis: our legitimate interest in preventing abuse.</li>
+    </ul>
+    <p>
+      We do not use your data for marketing unless you separately ask us to, and we do not
+      sell, rent or trade it to anyone.
+    </p>
+
+    <h2>6. Who else sees it</h2>
+    <p>We share personal data only with:</p>
+    <ul>
+      <li>our hosting provider, <Tbc what="hosting provider" />;</li>
+      <li>the service that delivers and stores enquiry submissions, <Tbc what="form processor and where data is stored" />;</li>
+      <li>professional advisers, or a regulator or court, where we are legally required to.</li>
+    </ul>
+    <p>
+      Where any of these store data outside Malaysia, we remain responsible for it and
+      require them to protect it to the standard the Act expects.
+    </p>
+
+    <h2>7. WhatsApp</h2>
+    <p>
+      The WhatsApp buttons on this site open a conversation in WhatsApp, which is operated by
+      Meta, not by us. Once you are in WhatsApp you are subject to Meta&rsquo;s own privacy
+      terms, and Meta can see that you contacted us. We control only what happens to the
+      messages after we receive them. If you would rather Meta were not involved, email us at
+      <Tbc what="general enquiries email" /> instead.
+    </p>
+
+    <h2>8. How long we keep it</h2>
+    <p>
+      Enquiries that do not lead to a consultation are deleted after
+      <Tbc what="retention period for enquiries" />. If you become a patient, your clinical
+      records are kept for the period Malaysian medical record-keeping requirements set,
+      which is longer and sits outside this policy.
+    </p>
+
+    <h2>9. Your rights</h2>
+    <p>Under the Act you may ask us to:</p>
+    <ul>
+      <li><strong>Access</strong> the personal data we hold about you;</li>
+      <li><strong>Correct</strong> it if it is wrong or out of date;</li>
+      <li><strong>Withdraw your consent</strong> to us processing it, at any time;</li>
+      <li><strong>Limit</strong> how we process it, including telling us to stop contacting you;</li>
+      <li><strong>Delete</strong> it, where we are not required to keep it.</li>
+    </ul>
+    <p>
+      Write to <Tbc what="data protection contact name" /> at <Tbc what="data protection email" />.
+      We will respond within the period the Act allows. There is no charge for a reasonable
+      request. If you are not satisfied with our answer, you may complain to the Personal Data
+      Protection Commissioner of Malaysia.
+    </p>
+
+    <h2>10. Security</h2>
+    <p>
+      The site is served over HTTPS and access to enquiries is limited to staff who need it.
+      No transmission over the internet is completely secure, which is the practical reason
+      clinical detail belongs in consultation rather than in a web form.
+    </p>
+
+    <h2>11. Children</h2>
+    <p>
+      This website is not directed at children under 18. If a minor needs care, a parent or
+      guardian should make the enquiry.
+    </p>
+
+    <h2>12. Changes</h2>
+    <p>
+      If we change this policy we will update the date at the top. If we ever add analytics,
+      advertising or online booking, we will update this policy and ask for your consent
+      before any tracking begins.
+    </p>
+
+    <h2>13. Contact</h2>
+    <p>
+      <Tbc what="data protection contact name" />, <Tbc what="data protection email" />,
+      <Tbc what="business phone" />, <Tbc what="registered address" />.
+    </p>
+  </Legal>
+</Page>

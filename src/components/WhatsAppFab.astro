@@ -1,15 +1,33 @@
 ---
-/** Persistent WhatsApp entry point, fixed bottom-right on every page. */
-import { Icon } from 'astro-icon/components';
+/**
+ * Persistent WhatsApp entry point, fixed bottom-right on every page.
+ *
+ * WhatsApp brand green with the client's own glyph, because the recognition
+ * is the point: people identify this control by its colour and shape before
+ * they read anything.
+ *
+ * The pulse is two translucent discs behind the button on offset delays, so
+ * there is always a halo on screen rather than a ring that appears and
+ * vanishes. They are separate elements, not a shadow on the button, so the
+ * button itself never moves and stays a stable tap target.
+ *
+ * The dock is deliberately wider than the button: the halo reaches 1.75x and
+ * would otherwise cross the viewport edge and widen the document.
+ */
+import IconWhatsApp from './IconWhatsApp.astro';
 import { WHATSAPP_HREF } from '../lib/site';
 ---
-<a
-  href={WHATSAPP_HREF}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="safe-bottom safe-right fixed z-50 grid h-14 w-14 place-items-center rounded-full transition-transform duration-200 hover:-translate-y-0.5 active:scale-95"
-  style="background: var(--dark); color: var(--white); box-shadow: 0 8px 24px rgb(41 49 57 / 0.32);"
-  aria-label="Message Cellove Wellness on WhatsApp"
->
-  <Icon aria-hidden="true" name="ph:whatsapp-logo" class="h-6 w-6" />
-</a>
+<div class="fab-dock fixed z-50 grid place-items-center">
+  <span class="fab-pulse" aria-hidden="true"></span>
+  <span class="fab-pulse fab-pulse--lag" aria-hidden="true"></span>
+  <a
+    href={WHATSAPP_HREF}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative grid h-14 w-14 place-items-center rounded-full transition-transform duration-200 hover:-translate-y-0.5 active:scale-95"
+    style="background: var(--wa); color: var(--white); box-shadow: 0 8px 24px rgb(18 92 63 / 0.34);"
+    aria-label="Message Cellove Wellness on WhatsApp"
+  >
+    <IconWhatsApp class="h-7 w-7" />
+  </a>
+</div>

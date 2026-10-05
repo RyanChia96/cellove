@@ -1,0 +1,96 @@
+---
+import Page from '../layouts/Page.astro';
+import PageHead from '../components/PageHead.astro';
+import Legal from '../components/Legal.astro';
+import Tbc from '../components/Tbc.astro';
+
+// DRAFT FOR LEGAL REVIEW.
+//
+// The "no cookies" statement is not boilerplate, it was verified: the source
+// contains no document.cookie, localStorage or sessionStorage use, no analytics
+// or advertising snippet, and the built HTML requests no third-party origin
+// (fonts are self-hosted). If that ever stops being true this page is wrong,
+// and a consent banner becomes necessary rather than optional.
+const title = 'Cookie Policy | Cellove Wellness';
+const description =
+  'This website sets no cookies and runs no analytics or advertising trackers. What that means, and what would change if it ever did.';
+---
+<Page title={title} description={description}>
+  <PageHead
+    eyebrow="Cookies"
+    heading="Cookie Policy"
+    body="The short version: this website does not set cookies and does not track you."
+  />
+  <Legal>
+    <div class="callout">
+      <p>
+        <strong>This website sets no cookies.</strong> It runs no analytics, no advertising
+        pixels, and no third-party scripts. Nothing is stored on your device, and we cannot
+        tell who you are unless you choose to contact us.
+      </p>
+    </div>
+
+    <h2>1. What cookies are</h2>
+    <p>
+      A cookie is a small file a website asks your browser to store, so it can recognise you
+      on your next visit. Related technologies, such as local storage and tracking pixels,
+      do much the same thing. They are useful for keeping you logged in, and they are also
+      how most of the web follows people between sites.
+    </p>
+
+    <h2>2. What we use</h2>
+    <p>
+      Nothing. This is a brochure website with no login, no basket and no personalisation, so
+      there is nothing for a cookie to remember. We decided not to install analytics rather
+      than installing it and asking you to consent to it.
+    </p>
+    <p>Specifically, as at the date above, this site contains:</p>
+    <ul>
+      <li>no Google Analytics, Google Tag Manager or similar;</li>
+      <li>no Meta, TikTok or LinkedIn advertising pixel;</li>
+      <li>no session recording or heatmap tool;</li>
+      <li>no embedded fonts, maps or videos loaded from another company&rsquo;s servers. Our typefaces are served from our own site, so no font provider is told you visited.</li>
+    </ul>
+    <p>
+      Because of this, there is no cookie banner. A banner that asks permission to do nothing
+      would be noise.
+    </p>
+
+    <h2>3. Server logs</h2>
+    <p>
+      Our hosting provider, <Tbc what="hosting provider" />, keeps standard server logs
+      recording requests to the site, which may include your IP address and browser type.
+      These are not cookies, are not used to track you between sites, and are covered in our
+      <a href="/privacy">Privacy Policy</a>.
+    </p>
+
+    <h2>4. When you leave this site</h2>
+    <p>
+      The WhatsApp and social media buttons are plain links. They set nothing while you are
+      here. The moment you follow one, you are on a service run by another company, and that
+      company&rsquo;s cookies and policies apply. We have no control over and no visibility of
+      what they store.
+    </p>
+
+    <h2>5. Managing cookies anyway</h2>
+    <p>
+      Every major browser lets you see and delete stored cookies and block them by site,
+      usually under privacy or site settings. Blocking cookies entirely will not affect
+      anything on this website, since we do not use them.
+    </p>
+
+    <h2>6. If this changes</h2>
+    <p>
+      If we later add analytics, advertising or an online booking system, we will update this
+      page, update the <a href="/privacy">Privacy Policy</a>, and ask for your consent before
+      any non-essential cookie is set. Consent will be opt-in, refusing will be as easy as
+      accepting, and nothing will be pre-ticked.
+    </p>
+
+    <h2>7. Contact</h2>
+    <p>
+      Questions about this page: <Tbc what="data protection contact name" /> at
+      <Tbc what="data protection email" />.
+    </p>
+  </Legal>
+</Page>

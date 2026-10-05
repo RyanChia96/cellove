@@ -1,50 +1,98 @@
 ---
 /**
- * Section 3, health areas as a bento. Mixed tile spans rather than an even
- * grid, so the eye has somewhere to start.
+ * Section 3, health areas. Ported from Figma "Section 3 · Health areas"
+ * (node 93:230 on Page · Home).
  *
- * Grouped deliberately: the brief rules out publishing a disease catalogue,
- * so these are broad areas and the copy says suitability is decided in
- * consultation, not from this page.
+ * Two rows rather than a free bento: 8/4 on top, then 4/4/4. The wide tile
+ * leads because the eye needs somewhere to start, and the three equal tiles
+ * below read as a set rather than a ranking.
+ *
+ * Every tile carries an image in the Figma, so the no-image branch and the
+ * ruler that filled it are both gone.
+ *
+ * The brief rules out publishing a disease catalogue, so these stay broad
+ * areas and the standfirst says suitability is decided in consultation.
+ *
+ * Side gutter is the site's own px-5/sm:px-8 rather than the Figma frame's
+ * 64px, so this section aligns with every other section on the page.
  */
-const tiles = [
-  { k: 'Preventive health', d: 'People who feel well and want to keep it that way.', img: 'bento-preventive', span: 'lg:col-span-5', alt: 'A quiet interior with warm daylight.' },
-  { k: 'Healthy ageing', d: 'Staying capable for longer, rather than chasing youth.', img: 'bento-ageing', span: 'lg:col-span-4', alt: 'A warm plaster wall in raking light.' },
-  { k: 'Regenerative and cellular health', d: 'Where cellular approaches are considered, and where they are not.', span: 'lg:col-span-3' },
-  { k: 'Skin and hair health', d: 'Usually alongside one of the areas above, rarely on its own.', span: 'lg:col-span-4' },
-  { k: 'Other relevant areas', d: 'Joints and movement, heart, kidneys, immunity, and how the body handles energy. Bring the question and we will tell you whether it is one for us.', img: 'bento-other', span: 'lg:col-span-8', alt: 'A simple chair on a herringbone floor.' },
+const rows = [
+  [
+    {
+      k: 'Preventive health',
+      d: 'People who feel well and want to keep it that way.',
+      img: 'bento-preventive',
+      alt: 'A person stretching by a tall window in soft daylight.',
+      span: 'lg:col-span-8',
+      tall: true,
+    },
+    {
+      k: 'Healthy ageing',
+      d: 'Staying capable for longer, rather than chasing youth.',
+      img: 'bento-ageing',
+      alt: 'An older person reaching upward in a bright, plain room.',
+      span: 'lg:col-span-4',
+      tall: true,
+    },
+  ],
+  [
+    {
+      k: 'Skin and hair health',
+      d: 'Usually alongside one of the areas above, rarely on its own.',
+      img: 'bento-skin',
+      alt: 'A person in profile against a warm plaster wall.',
+      span: 'lg:col-span-4',
+    },
+    {
+      k: 'Regenerative and cellular health',
+      d: 'Where cellular approaches are considered, and where they are not.',
+      img: 'bento-regen',
+      alt: 'A cluster of translucent spheres in raking light.',
+      span: 'lg:col-span-4',
+    },
+    {
+      k: 'Other relevant areas',
+      d: 'Joints and movement, heart, kidneys, immunity, and how the body handles energy. Bring the question and we will tell you whether it is one for us.',
+      img: 'bento-other',
+      alt: 'A person seated on a floor, hands resting on one knee.',
+      span: 'lg:col-span-4',
+    },
+  ],
 ];
 ---
 <section id="health" class="ground-white edge-top">
   <div class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:py-24">
-    <p class="label" data-reveal>Health &amp; wellness</p>
-    <h2 class="display mt-5 max-w-[20ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" data-reveal>
+    <p class="label" style="color: var(--label-gold);" data-reveal>Health &amp; wellness</p>
+    <h2 class="display mt-4 max-w-[20ch] text-[2.1rem] sm:text-[2.6rem] lg:text-[2.9rem]" data-reveal>
       What people come to us about.
     </h2>
-    <p class="mt-6 max-w-[54ch] text-[1.02rem] leading-relaxed" data-reveal>
+    <p class="mt-6 max-w-[42ch] text-[1rem] leading-relaxed" data-reveal>
       Whether any approach suits you is decided in consultation with a doctor, never
       from a list on a website.
     </p>
 
-    <div class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
-      {tiles.map((t) => (
-        <article class={`sheet flex flex-col overflow-hidden ${t.span}`} data-reveal>
-          {t.img && (
+    {rows.map((row, r) => (
+      <div class={`grid gap-4 md:grid-cols-2 lg:grid-cols-12 ${r === 0 ? 'mt-14' : 'mt-4'}`}>
+        {row.map((t) => (
+          <article
+            class={`${t.span} flex flex-col overflow-hidden`}
+            style="background: var(--beige); border: 1px solid var(--hairline);"
+            data-reveal
+          >
             <img
               src={`/media/${t.img}.jpg`}
               alt={t.alt}
-              loading="lazy" decoding="async" width="1000" height="560"
-              class="w-full object-cover"
-              style="aspect-ratio: 16 / 9; background: var(--beige);"
+              loading="lazy"
+              decoding="async"
+              class={`w-full object-cover ${t.tall ? 'h-[258px]' : 'h-[200px]'}`}
             />
-          )}
-          <div class="flex flex-1 flex-col p-7">
-            <h3 class="display text-[1.4rem]">{t.k}</h3>
-            <p class="mt-3 text-[0.93rem] leading-relaxed">{t.d}</p>
-            {!t.img && <div class="ruler mt-auto pt-8"></div>}
-          </div>
-        </article>
-      ))}
-    </div>
+            <div class="flex flex-col gap-1.5 p-6">
+              <h3 class="text-[1.4rem] font-semibold leading-snug" style="color: var(--ink);">{t.k}</h3>
+              <p class="text-[0.875rem] leading-relaxed" style="color: var(--graphite);">{t.d}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    ))}
   </div>
 </section>
