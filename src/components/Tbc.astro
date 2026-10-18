@@ -3,8 +3,14 @@
  * A business detail the client has not supplied. Renders as a loud highlighted
  * placeholder rather than plausible-looking filler, because an invented company
  * number or address in a privacy policy is worse than an obvious gap.
+ *
+ * Pass `field` to pull the real value from BUSINESS once it has been supplied.
  */
-interface Props { what: string; }
-const { what } = Astro.props;
+import { BUSINESS } from '../lib/legal';
+interface Props { what: string; field?: keyof typeof BUSINESS; }
+const { what, field } = Astro.props;
+const value = field ? BUSINESS[field] : undefined;
 ---
-<mark class="tbc">[{what} &mdash; to be confirmed]</mark>
+{typeof value === 'string'
+  ? <Fragment>{value}</Fragment>
+  : <mark class="tbc">[{what} &mdash; to be confirmed]</mark>}

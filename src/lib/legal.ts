@@ -21,13 +21,13 @@ export const BUSINESS = {
   /** Registered business address. */
   address: TBC as Detail,
   /** Clinic address, if different from the registered address. */
-  clinicAddress: TBC as Detail,
+  clinicAddress: '02-16-03A, Pavilion Damansara Heights, No 3, Jalan Damanlela, Pusat Bandar Damansara, 50490 Kuala Lumpur' as Detail,
   /** General enquiries email. */
-  email: TBC as Detail,
+  email: 'cellovewellness@gmail.com' as Detail,
   /** Landline or business phone. */
   phone: TBC as Detail,
   /** WhatsApp business number. Currently a placeholder in lib/site.ts too. */
-  whatsapp: TBC as Detail,
+  whatsapp: '+60 11-4533 1349' as Detail,
   /** Named contact for PDPA requests, and their email. */
   dataProtectionContact: TBC as Detail,
   dataProtectionEmail: TBC as Detail,
