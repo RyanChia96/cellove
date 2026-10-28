@@ -9,12 +9,18 @@ import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
 
-interface Props { title: string; description: string; formGround?: string; }
-const { title, description, formGround = 'white' } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  formGround?: string;
+  /** The first section runs underneath the floating nav (the homepage hero). */
+  overlayNav?: boolean;
+}
+const { title, description, formGround = 'white', overlayNav = false } = Astro.props;
 ---
 <Base title={title} description={description}>
   <Nav />
-  <main id="main">
+  <main id="main" class={overlayNav ? '' : 'pt-[68px] lg:pt-[106px]'}>
     <slot />
     <ContactForm ground={formGround} />
   </main>

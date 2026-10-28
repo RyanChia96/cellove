@@ -1,33 +1,71 @@
 ---
 /**
- * Section 2. The myth question, centred on graph paper.
+ * Section 2. The myth question: two overlapping photographs on the left, the
+ * statement and two ways to continue on the right.
  *
- * The eyebrow is gone and the annotation has become a plain centred standfirst:
- * the heading is the whole statement here, and a handwritten note rotated off
- * axis would fight a centred axis rather than sit beside it.
+ * myth-collage.webp is a single transparent image: both rounded photographs and
+ * the gold linework joining them, so the curves stay registered to the photos
+ * at every width. Do not rebuild it as separate layers.
  *
- * The philosophy statement, the three pillars and the two CTAs used to live
- * here too; they now sit in Philosophy.astro as their own section. This one
- * asks the question, that one answers it.
+ * PLACEHOLDER COPY. Wording is to be replaced after the SEO research. The
+ * collage photographs are also placeholders, to be replaced with real
+ * photography.
  */
-import FigEvidence from './FigEvidence.astro';
+import { Icon } from 'astro-icon/components';
+import IconWhatsApp from './IconWhatsApp.astro';
+import { WHATSAPP_HREF } from '../lib/site';
 ---
-<section id="why-us" class="ground-white paper-grid edge-top">
-  <div class="mx-auto max-w-[1440px] px-5 pt-28 pb-20 sm:px-8 lg:pt-32 lg:pb-24">
-    <h2 class="display text-center text-[2.1rem] leading-[1.14] sm:text-[2.6rem] lg:text-[3.1rem]" data-reveal>
-      <span class="block">Your Health Deserves</span>
-      <span class="block">Better Than Internet Myths.</span>
-    </h2>
-    <p
-      class="mx-auto mt-5 max-w-[52ch] text-center text-[0.95rem] leading-relaxed"
-      style="color: var(--graphite);"
-      data-reveal
-    >
-      Ask what kind of evidence sits underneath the claim.
-    </p>
+<section
+  id="why-us"
+  class="edge-top"
+  style="background: color-mix(in srgb, var(--beige) 45%, var(--white));"
+>
+  <div class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:py-28">
+    <div class="flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:justify-between lg:gap-16">
+      <div class="lg:w-5/12 lg:shrink-0" data-reveal>
+        <img
+          src="/media/myth-collage.webp"
+          alt="A woman smiling with her eyes closed in a sunlit garden, and a doctor consulting with a patient in a calm clinic lounge."
+          width="571" height="568"
+          loading="lazy" decoding="async"
+          class="mx-auto h-auto w-full max-w-[34rem] lg:mx-0"
+        />
+      </div>
 
-    <div class="sheet mx-auto mt-16 max-w-[62rem] px-6 py-12 sm:px-12 sm:py-16" data-reveal>
-      <FigEvidence />
+      <div class="lg:w-[44%] lg:shrink-0">
+        <p
+          class="label inline-block rounded-full px-5 py-2.5"
+          style="background: var(--beige-deep);"
+          data-reveal
+        >The fundamental philosophy</p>
+        <h2 class="display mt-5 text-[2.1rem] leading-[1.14] sm:text-[2.6rem] lg:text-[3.1rem]" data-reveal>
+          We Believe Your Health Deserves Better Than Internet Myths.
+        </h2>
+        <p class="mt-5 max-w-[52ch] text-[0.95rem] leading-relaxed" style="color: var(--graphite);" data-reveal>
+          Ask what kind of evidence sits underneath the claim. The useful question is
+          not whether a claim is true. It is how anyone would know.
+        </p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" data-reveal>
+          <a
+            href="/science"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+            style="background: var(--ink); color: var(--white);"
+          >
+            Read More
+            <Icon aria-hidden="true" name="ph:arrow-right" class="h-4 w-4" />
+          </a>
+          <a
+            href={WHATSAPP_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+            style="border: 1px solid var(--ink); color: var(--ink);"
+          >
+            <IconWhatsApp class="h-4 w-4" />
+            Ask on WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

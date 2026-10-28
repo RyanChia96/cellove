@@ -1,6 +1,9 @@
 ---
 /**
- * Global navigation. Matches Figma page 08 · Notebook · Site.
+ * Global navigation. A dark glass pill floating over the page, per Figma
+ * (Nav, 157:925). It is fixed, so it takes no space in the flow: the Page
+ * layout pads the top of every page except the homepage, whose hero runs
+ * underneath it.
  *
  * Items point at real routes rather than on-page anchors, because the site
  * is six pages now, not one. "Why Cellove" is the exception: it is Section 2
@@ -16,41 +19,38 @@ const links = [
   { href: '/journal', label: 'Journal' },
 ];
 ---
-<header
-  class="sticky top-0 z-50 backdrop-blur-md"
-  style="background: color-mix(in srgb, var(--white) 88%, transparent); border-bottom: 1px solid var(--hairline);"
->
+<header class="pointer-events-none fixed inset-x-0 top-3 z-50 px-3 sm:px-5 lg:top-[43px] lg:px-[67px]">
   <nav
-    class="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-6 px-5 sm:px-8"
+    class="nav-pill pointer-events-auto relative mx-auto flex h-14 max-w-[1306px] items-center justify-between gap-6 rounded-full pr-2 pl-5 lg:h-[63px] lg:pr-3 lg:pl-6"
     aria-label="Primary"
   >
-    <a href="/" class="flex shrink-0 items-center gap-2.5" aria-label="Cellove Wellness, home">
-      <img src="/media/logo-cellove.svg" alt="Cellove Wellness" width="149" height="36" class="h-9 w-auto" />
+    <a href="/" class="flex shrink-0 items-center" aria-label="Cellove Wellness, home">
+      <img src="/media/logo-white.svg" alt="Cellove Wellness" width="149" height="36" class="h-8 w-auto lg:h-9" />
     </a>
 
-    <ul class="hidden items-center gap-7 lg:flex">
+    <ul class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 lg:flex">
       {links.map((l) => (
         <li>
           <a
             href={l.href}
-            class="text-[0.82rem] transition-colors duration-200 hover:text-[var(--annot)]"
-            style="color: var(--graphite);"
+            class="whitespace-nowrap text-[0.875rem] transition-opacity duration-200 hover:opacity-70"
+            style="color: #fff;"
           >{l.label}</a>
         </li>
       ))}
     </ul>
 
-    <div class="flex shrink-0 items-center gap-3">
+    <div class="flex shrink-0 items-center gap-2">
       <a
         href="/contact"
-        class="hidden whitespace-nowrap rounded-full px-5 py-2.5 text-[0.8rem] font-medium transition-transform duration-200 active:scale-[0.98] md:inline-block"
-        style="background: var(--ink); color: var(--white);"
-      >Start Your Cellove Journey</a>
+        class="hidden whitespace-nowrap rounded-full px-[22px] py-2.5 text-[0.875rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98] md:inline-block"
+        style="background: #fff; color: var(--ink);"
+      >Contact Us</a>
       <button
         type="button"
         id="navToggle"
         class="grid h-10 w-10 place-items-center rounded-full lg:hidden"
-        style="border: 1px solid var(--hairline); color: var(--ink);"
+        style="border: 1px solid rgba(255,255,255,0.3); color: #fff;"
         aria-expanded="false"
         aria-controls="navPanel"
         aria-label="Open menu"
@@ -60,18 +60,15 @@ const links = [
     </div>
   </nav>
 
-  <div id="navPanel" hidden class="lg:hidden" style="border-top: 1px solid var(--hairline); background: var(--white);">
-    <ul class="mx-auto flex max-w-[1440px] flex-col px-5 py-3 sm:px-8">
+  <div id="navPanel" hidden class="nav-pill pointer-events-auto mx-auto mt-2 max-w-[1306px] rounded-3xl lg:hidden">
+    <ul class="flex flex-col px-5 py-3">
       {links.map((l) => (
         <li>
-          <a href={l.href} class="block py-3 text-[0.95rem]" style="color: var(--graphite); border-bottom: 1px solid var(--hairline);">{l.label}</a>
+          <a href={l.href} class="block py-3 text-[0.95rem]" style="color: #fff; border-bottom: 1px solid rgba(255,255,255,0.14);">{l.label}</a>
         </li>
       ))}
-      <li>
-        <a href="/contact" class="block py-3 text-[0.95rem]" style="color: var(--graphite); border-bottom: 1px solid var(--hairline);">Contact Us</a>
-      </li>
       <li class="pt-4 pb-2">
-        <a href="/contact" class="block rounded-full px-5 py-3 text-center text-[0.9rem] font-medium" style="background: var(--ink); color: var(--white);">Start Your Cellove Journey</a>
+        <a href="/contact" class="block rounded-full px-5 py-3 text-center text-[0.9rem] font-medium" style="background: #fff; color: var(--ink);">Contact Us</a>
       </li>
     </ul>
   </div>

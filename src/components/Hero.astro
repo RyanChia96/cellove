@@ -1,6 +1,6 @@
 ---
 /**
- * Hero. Copy left, cell imagery right.
+ * Hero. Copy centred over full-bleed cell footage, per Figma (Hero, 157:937).
  *
  * The still is the load-bearing element and always renders. The video layer
  * sits on top at opacity 0 and only fades in once it is genuinely playing,
@@ -13,52 +13,14 @@
  * The clip carries no audio track. It is a muted decorative loop, so an audio
  * stream would be bytes nobody can ever hear.
  */
-import { Icon } from 'astro-icon/components';
-import IconWhatsApp from './IconWhatsApp.astro';
 import { WHATSAPP_HREF } from '../lib/site';
 ---
-<section class="relative overflow-hidden" style="background: #000; color: #fff;">
-  <div class="relative z-10 mx-auto grid max-w-[1440px] items-center gap-10 px-5 pt-24 pb-28 sm:px-8 lg:grid-cols-12 lg:gap-0 lg:px-0 lg:pt-0 lg:pb-0 lg:min-h-[58rem]">
-    <div class="lg:col-span-6 lg:py-40 lg:pl-16 xl:pl-20">
-      <h1 class="display text-[2.6rem] sm:text-[3.4rem] lg:text-[4.25rem]" style="color: #fff;" data-reveal>
-        Self Love Begins<br />With <span style="color: #c8a46a;">Cellove</span>
-      </h1>
-
-      <p
-        class="mt-7 max-w-[32rem] text-[1.02rem] leading-relaxed sm:text-[1.06rem]"
-        style="color: rgba(255,255,255,0.88);"
-        data-reveal
-      >
-        Better health decisions begin with better understanding. Doctor-led care,
-        guided by evidence rather than trend.
-      </p>
-
-      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4" data-reveal>
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
-          style="background: #c8a46a; color: var(--ink);"
-        >
-          Start Your Cellove Journey
-          <Icon aria-hidden="true" name="ph:arrow-right" class="h-4 w-4" />
-        </a>
-        <a
-          href={WHATSAPP_HREF}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
-          style="border: 1px solid #fff; color: #fff;"
-        >
-          <IconWhatsApp class="h-4 w-4" />
-          WhatsApp Us
-        </a>
-      </div>
-    </div>
-  </div>
-  {/* Full-bleed media layer behind the copy. The fade is solid black under the
-      text and clears to nothing on the right, so the footage reads as emerging
-      from the page. */}
-  <div class="absolute inset-0 -z-0" aria-hidden="true">
+<section
+  class="relative flex items-center justify-center overflow-hidden"
+  style="background: #000; color: #fff; min-height: min(100svh, 56rem);"
+>
+  {/* Full-bleed media layer, centred, under a flat 20% black overlay. */}
+  <div class="absolute inset-0" aria-hidden="true">
     <img
       src="/media/hero-cells.jpg"
       alt=""
@@ -67,7 +29,7 @@ import { WHATSAPP_HREF } from '../lib/site';
       width="602"
       height="801"
       class="h-full w-full object-cover"
-      style="object-position: right center;"
+      style="object-position: center;"
     />
     <video
       id="heroVideo"
@@ -76,9 +38,49 @@ import { WHATSAPP_HREF } from '../lib/site';
       tabindex="-1"
       poster="/media/hero-cells.jpg"
       data-mp4="/media/cellove-hero.mp4"
-      style="object-position: right center;"
+      style="object-position: center;"
     ></video>
-    <div class="hero-fade pointer-events-none absolute inset-0"></div>
+    <div class="absolute inset-0" style="background: rgb(0 0 0 / 0.2);"></div>
+  </div>
+
+  <div class="hero-copy relative z-10 mx-auto flex max-w-[1440px] flex-col items-center px-5 pt-32 pb-24 text-center sm:px-8">
+    <h1
+      class="text-[2.8rem] leading-[1.08] sm:text-[4rem] lg:text-[5.5rem]"
+      style="color: #fff; font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em;"
+      data-reveal
+    >
+      Self Love Begins<br />With <span class="hero-mark">Cellove<svg
+        viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"
+      ><path pathLength="1" d="M4 15 C 60 7, 120 5, 180 9 S 270 17, 296 8" /></svg></span>
+    </h1>
+
+    <p
+      class="mt-7 max-w-[30rem] text-[1.02rem] leading-relaxed sm:text-[1.1rem]"
+      style="color: rgba(255,255,255,0.92);"
+      data-reveal
+    >
+      Better health decisions begin with better understanding. Doctor-led care,
+      guided by evidence rather than trend.
+    </p>
+
+    <div class="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:gap-3.5" data-reveal>
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-full px-7 py-3.5 text-[0.95rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+        style="background: #fff; color: var(--ink);"
+      >
+        Start Your Journey
+      </a>
+      <a
+        href={WHATSAPP_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.95rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+        style="border: 1px solid #fff; color: #fff;"
+      >
+        WhatsApp Us
+      </a>
+    </div>
   </div>
 </section>
 
