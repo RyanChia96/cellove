@@ -1,0 +1,96 @@
+---
+/**
+ * Testimonials, just above the Journal: the client's four results posters
+ * (see lib/stories.ts), then the two ways to start a conversation.
+ *
+ * The posters are text-heavy, so each one opens full size in a new tab when
+ * tapped. Four across on desktop, two across on phones.
+ */
+import { Icon } from "astro-icon/components";
+import IconWhatsApp from "./IconWhatsApp.astro";
+import { WHATSAPP_HREF } from "../lib/site";
+import { POSTERS } from "../lib/stories";
+---
+
+<section
+  id="results"
+  class="edge-top"
+  style="background: color-mix(in srgb, var(--beige) 45%, var(--white));"
+>
+  <div class="mx-auto max-w-[1440px] px-5 py-20 sm:px-8 lg:py-28">
+    <div class="text-center">
+      <p
+        class="label inline-block rounded-full px-5 py-2.5"
+        style="background: var(--beige-deep);"
+        data-reveal
+      >
+        Testimonials
+      </p>
+      <h2
+        class="display mx-auto mt-5 max-w-[20ch] text-[2.1rem] leading-[1.14] sm:text-[2.6rem] lg:text-[3.1rem]"
+        data-reveal
+      >
+        What we have seen in our care.
+      </h2>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 items-center gap-3 sm:gap-5 lg:mt-14 lg:grid-cols-4">
+      {
+        POSTERS.map((p) => (
+          <a
+            href={p.src}
+            target="_blank"
+            rel="noopener"
+            class="group block overflow-hidden rounded-xl transition-transform duration-300 hover:-translate-y-1"
+            style="box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06);"
+            data-reveal
+          >
+            <img
+              src={p.src}
+              alt={p.alt}
+              width={p.width}
+              height={p.height}
+              loading="lazy"
+              decoding="async"
+              class="block h-auto w-full"
+            />
+            <span class="sr-only">(opens full size in a new tab)</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <p
+      class="mx-auto mt-6 max-w-[60ch] text-center text-[0.8rem] leading-relaxed"
+      style="color: var(--pencil);"
+      data-reveal
+    >
+      Tap a poster to view it full size. Individual results vary. Whether any
+      approach suits you is decided in consultation with a doctor.
+    </p>
+
+    <div
+      class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+      data-reveal
+    >
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+        style="background: var(--ink); color: var(--white);"
+      >
+        Start Your Cellove Journey
+        <Icon aria-hidden="true" name="ph:arrow-right" class="h-4 w-4" />
+      </a>
+      <a
+        href={WHATSAPP_HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 py-3.5 text-[0.9rem] font-medium transition-transform duration-200 hover:-translate-y-px active:scale-[0.98]"
+        style="border: 1px solid var(--ink); color: var(--ink);"
+      >
+        <IconWhatsApp class="h-4 w-4" />
+        Ask on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

@@ -325,6 +325,57 @@ figure.fig figcaption {
   margin: 1.5rem 0;
 }
 
+/* Journal article body. Larger and looser than the legal prose: this is
+   meant to be read start to finish, not consulted. */
+.article-prose > :first-child { margin-top: 0; }
+.article-prose p,
+.article-prose li { font-size: 1.08rem; line-height: 1.8; color: var(--graphite); }
+.article-prose p { margin-bottom: 1.35rem; }
+.article-prose h2 {
+  font-family: var(--font-display, inherit);
+  font-weight: 600;
+  font-size: 1.65rem;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-top: 3.25rem;
+  margin-bottom: 1.1rem;
+}
+.article-prose ul { list-style: disc; padding-left: 1.3rem; margin-bottom: 1.5rem; }
+.article-prose li { margin-bottom: 0.5rem; }
+.article-prose li::marker { color: var(--annot); }
+.article-prose a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.article-prose strong { color: var(--ink); font-weight: 500; }
+.article-prose .study {
+  margin: 0.25rem 0 1.6rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 2px solid var(--annot);
+  background: var(--beige);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.article-prose .study a { text-decoration-color: color-mix(in srgb, var(--ink) 40%, transparent); }
+.article-prose .study a::after { content: "\00a0\2197"; text-decoration: none; display: inline-block; }
+.article-prose .signoff {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink);
+}
+.article-prose .signoff span {
+  display: block;
+  font-family: var(--font-display, inherit);
+  font-size: 1.65rem;
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.article-prose .article-note {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--pencil);
+}
+
 /* An unsupplied business detail. Deliberately loud: a placeholder that blends
    in is a placeholder that gets published. */
 .tbc {

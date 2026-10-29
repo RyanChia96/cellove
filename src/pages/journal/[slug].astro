@@ -1,0 +1,63 @@
+---
+/**
+ * A single Journal post. One narrow reading column under a full-width cover,
+ * closing with a general-information note and the conversation CTA.
+ */
+import { render } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import Page from '../../layouts/Page.astro';
+import { getPosts, readTime, formatDate, type Post } from '../../lib/journal';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: Post };
+const { Content } = await render(post);
+const { title, standfirst, description, date, image, imageAlt } = post.data;
+---
+<Page title={`${title.replace(/\.$/, '')} | The Cellove Journal`} description={description}>
+  <article>
+    <header class="ground-white">
+      <div class="mx-auto max-w-[1440px] px-5 pt-16 pb-10 sm:px-8 lg:pt-20 lg:pb-14">
+        <div class="mx-auto max-w-[46rem]">
+          <a href="/journal" class="inline-flex items-center gap-2 text-[0.88rem]" style="color: var(--graphite);" data-reveal>
+            <Icon aria-hidden="true" name="ph:arrow-left" class="h-4 w-4" />
+            The Cellove Journal
+          </a>
+          <p class="label mt-10" data-reveal>
+            <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+            <span aria-hidden="true"> &middot; </span>{readTime(post)}
+          </p>
+          <h1 class="display mt-4 text-[2.4rem] leading-[1.1] sm:text-[3rem] lg:text-[3.5rem]" data-reveal>{title}</h1>
+          <p class="mt-5 text-[1.2rem] leading-relaxed sm:text-[1.3rem]" style="color: var(--graphite);" data-reveal>{standfirst}</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="ground-white">
+      <div class="mx-auto max-w-[1100px] px-5 sm:px-8">
+        <img
+          src={image} alt={imageAlt}
+          fetchpriority="high" decoding="async" width="1600" height="800"
+          class="w-full object-cover"
+          style="aspect-ratio: 2 / 1; background: var(--beige);"
+        />
+      </div>
+    </div>
+
+    <div class="ground-white">
+      <div class="mx-auto max-w-[1440px] px-5 pt-14 pb-20 sm:px-8 lg:pt-16 lg:pb-28">
+        <div class="article-prose mx-auto max-w-[46rem]">
+          <Content />
+
+          <p class="article-note">
+            This article is general information. It is not a diagnosis, a treatment
+            recommendation or a substitute for individual medical advice.
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</Page>

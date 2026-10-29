@@ -1,6 +1,7 @@
 ---
 import Page from '../layouts/Page.astro';
 import PageHead from '../components/PageHead.astro';
+import ClinicGallery from '../components/ClinicGallery.astro';
 
 const title = 'About Cellove | Doctor-led Wellness Centre in Kuala Lumpur';
 const description =
@@ -48,13 +49,15 @@ const facts = [
 
       <div class="lg:col-span-6" data-reveal>
         <img
-          src="/media/about-clinic.jpg"
-          alt="A quiet consulting space with natural light."
-          loading="lazy" decoding="async" width="1200" height="800"
-          class="w-full object-cover"
-          style="aspect-ratio: 3 / 2; background: var(--beige);"
+          src="/media/about-reception.webp"
+          alt="The illuminated Cellove Wellness logo on the curved reception wall at the clinic, with the line Self Love Begins With Cell Love."
+          loading="lazy" decoding="async" width="810" height="1080"
+          class="mx-auto w-full max-w-[34rem] rounded-xl object-cover lg:ml-auto lg:mr-0"
+          style="aspect-ratio: 3 / 4; background: var(--beige);"
         />
       </div>
     </div>
   </section>
+
+  <ClinicGallery />
 </Page>
