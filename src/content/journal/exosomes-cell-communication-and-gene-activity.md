@@ -78,6 +78,8 @@ A 2024 systematic review examined 21 clinical reports involving extracellular-ve
 
 This is an important distinction: research involving extracellular vesicles is progressing, but the evidence for one application cannot automatically be applied to every exosome product or treatment.
 
+We look at safety, product quality and regulation in more detail in [Is Exosome Therapy Safe? What to Know in Malaysia](/journal/is-exosome-therapy-safe).
+
 ## A New Perspective on Cellular Wellness
 
 Exosomes are helping scientists explore a fascinating possibility: that influencing cellular communication may provide new ways to understand and potentially support the body's biological processes.
