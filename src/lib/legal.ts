@@ -13,6 +13,16 @@
 export const TBC = Symbol('to be confirmed');
 export type Detail = string | typeof TBC;
 
+/** The clinic address in parts, for structured data. BUSINESS.clinicAddress
+ *  is built from it so the two cannot drift apart. */
+export const CLINIC_ADDRESS = {
+  street: '02-16-03A, Pavilion Damansara Heights, No 3, Jalan Damanlela, Pusat Bandar Damansara',
+  postcode: '50490',
+  city: 'Kuala Lumpur',
+  region: 'Wilayah Persekutuan Kuala Lumpur',
+  country: 'MY',
+};
+
 export const BUSINESS = {
   /** Registered legal name, which may differ from the trading name. */
   legalName: TBC as Detail,
@@ -21,7 +31,7 @@ export const BUSINESS = {
   /** Registered business address. */
   address: TBC as Detail,
   /** Clinic address, if different from the registered address. */
-  clinicAddress: '02-16-03A, Pavilion Damansara Heights, No 3, Jalan Damanlela, Pusat Bandar Damansara, 50490 Kuala Lumpur' as Detail,
+  clinicAddress: `${CLINIC_ADDRESS.street}, ${CLINIC_ADDRESS.postcode} ${CLINIC_ADDRESS.city}` as Detail,
   /** General enquiries email. */
   email: 'cellovewellness@gmail.com' as Detail,
   /** Landline or business phone. */

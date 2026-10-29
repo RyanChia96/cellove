@@ -15,10 +15,12 @@ interface Props {
   formGround?: string;
   /** The first section runs underneath the floating nav (the homepage hero). */
   overlayNav?: boolean;
+  /** Page-specific structured data nodes. */
+  schema?: object[];
 }
-const { title, description, formGround = 'white', overlayNav = false } = Astro.props;
+const { title, description, formGround = 'white', overlayNav = false, schema } = Astro.props;
 ---
-<Base title={title} description={description}>
+<Base title={title} description={description} schema={schema}>
   <Nav />
   <main id="main" class={overlayNav ? '' : 'pt-[68px] lg:pt-[106px]'}>
     <slot />

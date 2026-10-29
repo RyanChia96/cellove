@@ -1,3 +1,6 @@
+/** Production origin, for canonical URLs and structured data. */
+export const SITE = 'https://cellove.my';
+
 /** Single source of truth for the conversation entry point.
  *  The brief (section 25) requires the pre-filled message to open on
  *  understanding rather than on price. */
