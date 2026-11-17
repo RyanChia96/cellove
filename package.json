@@ -10,6 +10,8 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/vercel": "^9.0.5",
     "@fontsource-variable/caveat": "^5.3.0",
     "@fontsource-variable/cormorant-garamond": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
@@ -17,9 +19,11 @@
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.97",
     "@tailwindcss/vite": "^4.3.3",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.16.2",
     "astro-icon": "^1.2.0",
     "sharp": "^0.34.4",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
   }
 }

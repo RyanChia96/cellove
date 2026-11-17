@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
+import vercel from '@astrojs/vercel';
 
 /**
  * Windows dev-server stability.
@@ -52,6 +53,9 @@ function isUnwatchable(candidate) {
 
 export default defineConfig({
   site: 'https://cellove.my',
+  adapter: vercel({
+    webAnalytics: { enabled: true },
+  }),
   integrations: [icon({ include: { ph: ['*'], 'simple-icons': ['instagram', 'facebook', 'tiktok', 'linkedin'] } })],
   vite: {
     plugins: [tailwindcss()],
